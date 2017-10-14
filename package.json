@@ -1,0 +1,22 @@
+{
+  "name": "hablame",
+  "version": "1.0.1",
+  "description": "red social de intercambio cultura en la universdiad icesi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arturo Gomez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.12.1",
+    "router": "^1.3.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://attearturo@bitbucket.org/attearturo/hablame.git"
+  },
+  "homepage": "https://bitbucket.org/attearturo/hablame#readme"
+}

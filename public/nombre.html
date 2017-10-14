@@ -1,0 +1,73 @@
+<!doctype>
+<html lang="en">
+
+<head>
+    <title>
+        Hablame
+    </title>
+
+    <!-- stylesheet -->
+    <link href="css/styleRegister.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type='text/css'>
+
+
+    <meta name="keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<body>
+
+    <div class="login">
+        <p class="confNombre">Hola <e class="azul">Nombre del Usuario</e></p>
+        <p class="escogerIdioma">Puedes escoger con que nombre quieres ser visto</p>
+
+        <div class="selectorU">
+            <div class="drop-menu">
+                <div class="select">
+                    <span class="desactivado">tu nombre</span>
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+                <input type="hidden" name="gender">
+                <ul class="dropeddown">
+                    <li id="opcionUno">JOSE DAVID GIRALDO</li>
+                    <li id="opcion2">DAVID GIRALDO</li>
+                    <li id="opcion3">JOSE GIRALDO</li<
+                </ul>
+            </div>
+        </div>
+        <form method="post">
+           <input type="password" name="p" placeholder="contraseña" required="required" />
+            <button href="./idiom.html" type="submit" class="btn btn-primary btn-block btn-large">Continuar</button>
+        </form>
+    </div>
+
+    <p class="progreso">
+    <img class="ciclaN"src="img/cicla.png">
+    <img class="linea" src="img/line.png"></p>
+
+    <script src="js/data.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/controller.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+        /*Select Box js*/
+        $('.drop-menu').click(function() {
+            $(this).attr('tabindex', 1).focus();
+            $(this).toggleClass('active');
+            $(this).find('.dropeddown').slideToggle(300);
+        });
+        $('.drop-menu').focusout(function() {
+            $(this).removeClass('active');
+            $(this).find('.dropeddown').slideUp(300);
+        });
+        $('.drop-menu .dropeddown li').click(function() {
+            $(this).parents('.drop-menu').find('span').text($(this).text());
+            $(this).parents('.drop-menu').find('input').attr('value', $(this).attr('id'));
+        });
+
+    </script>
+</body>
+
+</html>

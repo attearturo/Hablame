@@ -1,0 +1,62 @@
+<!doctype>
+<html lang="en">
+
+<head>
+    <title>
+        Hablame
+    </title>
+
+    <!-- stylesheet -->
+    <link href="css/styleRegister.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type='text/css'>
+
+
+    <meta name="keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<body>
+
+    <div class="login">
+       <h3>Repite esta oración</h3>
+        <p class="anuncioAudio">Hola, soy <e class="azul">Nombre del Usuario</e> de la universidad Icesi y me gustaría enseñarte español.</p>
+        
+        <p class="audio">
+    <img class="botonAudio" type="button" src="img/audio.png"></p>
+        
+        <form method="post">
+            
+            <button href="./nombre.html" type="submit" class="btn btn-primary btn-block btn-large">Continuar</button>
+        </form>
+        <p class="subTexto">Presiona para grabar audio</p>
+    </div>
+
+    <p class="progreso">
+    <img class="ciclaA"src="img/cicla.png">
+    <img class="linea" src="img/line.png"></p>
+
+    <script src="js/data.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/controller.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+        /*Select Box js*/
+        $('.drop-menu').click(function() {
+            $(this).attr('tabindex', 1).focus();
+            $(this).toggleClass('active');
+            $(this).find('.dropeddown').slideToggle(300);
+        });
+        $('.drop-menu').focusout(function() {
+            $(this).removeClass('active');
+            $(this).find('.dropeddown').slideUp(300);
+        });
+        $('.drop-menu .dropeddown li').click(function() {
+            $(this).parents('.drop-menu').find('span').text($(this).text());
+            $(this).parents('.drop-menu').find('input').attr('value', $(this).attr('id'));
+        });
+    </script>
+</body>
+
+</html>
