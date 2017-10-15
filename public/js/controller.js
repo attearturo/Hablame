@@ -1,6 +1,6 @@
 var controller = function controller(view, modelo) {
 
-	vista.onFormSubmit = (id, datos) =>{
+	view.onFormSubmit = (id, datos) =>{
 
 		var params = new URLSearchParams();
 		Object.keys(datos).forEach(key => {

@@ -26,23 +26,23 @@ api.get('/', (req, res) => {
 fs.readFile('database.json', 'utf8', (err, data) => !err && (database = JSON.parse(data)));
 save = () => fs.writeFile('database.json', JSON.stringify(database), 'utf8');
 
-api.route('/yo')
-
-	.get((req, res) => {
+	api.route('/yo')
+	
+		.get((req, res) => {
 		res.send(database.yo);
-	})
+		});
 
-	.post((req, res)) => {
+		.post((req, res)) => {
 		database.yo.notas.push({
 			materia:req.body,materia,
 			nota: req.body.nota,
 		});
 
 		res.send({ message: 'ok'});
-	});
+		};
 
-api.route('/personas')
-	.get((req, res) => {
+	api.route('/personas')
+		.get((req, res) => {
 		res.send(database.personas);
 	})
 	.post((req, res) => {

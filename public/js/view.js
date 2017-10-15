@@ -6,7 +6,6 @@ var view = {
      var form = document.createElement('form');
      form.setAttribute('method', 'post');
      form.innerHTML = `
-
         <img class="logo" src="public/img/logo.png">
         <input id='usern' type="text" name="user" placeholder="código de tu universidad" required="required" />
         <input id='pword' type="password" name="password" placeholder="contraseña" required="required" />
@@ -66,10 +65,12 @@ var view = {
         switch(location.pathname){
 
             case '/login':
+            main.setAttribute('class', 'backgroundLogin');
             main.appendChild(this.renderLogin());      
             break;
 
             case '/register':
+            main.setAttribute('class', 'backgroundRegister');
             main.appendChild(this.renderRegister());
             break;
         }
