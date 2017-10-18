@@ -23,6 +23,7 @@ app.use('/public', express.static('public'));
 // definimos el comportamiento del root
 app.get('*', (request, response) => {
   // enviamos el archivo index.html
+  console.log('Agrega index');
   response.sendFile(path.join(__dirname, 'public/index.html'));
 });
 

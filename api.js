@@ -44,17 +44,18 @@ save = () => fs.writeFile('database.json', JSON.stringify(database), 'utf8');
 	api.route('/personas')
 		.get((req, res) => {
 		res.send(database.personas);
-	})
+	}),
+
 	.post((req, res) => {
 		database.personas[req.body.id] = {
 			nombre: request.body.nombre,
 			universidad: request.body.universidad,
 			notas: []
 		};
-		save():
-	})
+		save();
+	});
 		res.send({message: 'ok'});
-  });
+  },
 
 api.route('/personas/:id')
   .get((req, res) => {

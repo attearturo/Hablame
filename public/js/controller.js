@@ -1,4 +1,4 @@
-var controller = function controller(view, modelo) {
+var controller = function controller(view, model) {
 
 	view.onFormSubmit = (id, datos) =>{
 

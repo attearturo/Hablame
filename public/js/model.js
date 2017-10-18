@@ -1,4 +1,4 @@
-var modelo = [
+var model = [
  {
    "codigo": 1,
    "nombre": "2pac - All Eyez On Me 2XLP",
