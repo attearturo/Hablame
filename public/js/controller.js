@@ -1,23 +1,30 @@
 var controller = function controller(view, model) {
 
-	view.onFormSubmit = (id, datos) =>{
+	if(self.fetch) {
+    console.log('Fetch funcionando')
+		} else {
+     console.log('Error en fetch')
+	}
 
-		var params = new URLSearchParams();
-		Object.keys(datos).forEach(key => {
-		params.set(key, datos[key]);
-		});
+	view.onFormSubmit = (email, nombre, apellido) => {
 
-		fetch(`http://localhost:3001/api/usuarios/${id}/notas`,{
-			method: 'POST',
-			body: params
-		})
+    console.log('Se introducen datos en el formulario');
+    var parametros = new URLSearchParams();
+    parametros.set('email', 'gomez@hotmail.com');
+    parametros.set('nombre', 'Carlos');
+    parametros.set('apellido', 'Pepito');
+    //parametros.set('apellido', input.value);
 
-		.then((response) => response.json())
-		.then((response) => console.log(response))
-	};
+    fetch(`http://localhost:3001/api/crearusuarios`,{
+    method: 'POST',
+    body: parametros
+    })
 
-    // render inicial con todos los libros
-    view.render();
+    .then(res => res.json())
+    .then((res)=> console.log(res));
+  };
+
+  view.render();
     // llamamos a setHeaderEvents
 }
 

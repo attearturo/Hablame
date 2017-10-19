@@ -8,6 +8,7 @@
 
     <!-- stylesheet -->
     <link href="public/css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type='text/css'>
     <meta name="keywords" content="">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -17,8 +18,26 @@
     <div id="main">
     </div>
 
+
     <script src="public/js/model.js"></script>
     <script src="public/js/view.js"></script>
     <script src="public/js/controller.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+        /*Select Box js*/
+        $('.drop-menu').click(function() {
+            $(this).attr('tabindex', 1).focus();
+            $(this).toggleClass('active');
+            $(this).find('.dropeddown').slideToggle(300);
+        });
+        $('.drop-menu').focusout(function() {
+            $(this).removeClass('active');
+            $(this).find('.dropeddown').slideUp(300);
+        });
+        $('.drop-menu .dropeddown li').click(function() {
+            $(this).parents('.drop-menu').find('span').text($(this).text());
+            $(this).parents('.drop-menu').find('input').attr('value', $(this).attr('id'));
+        });
+    </script>
 </body>
 </html>

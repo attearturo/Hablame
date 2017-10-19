@@ -1,5 +1,5 @@
     @import url(https://fonts.googleapis.com/css?family=Poppins);
-    .btn {
+    .btnLogin {
         display: inline-block;
         font-family: 'Poppins', sans-serif;
         *display: inline;
@@ -35,15 +35,15 @@
         *margin-left: .3em;
     }
 
-    .btn:hover,
-    .btn:active,
-    .btn.active,
-    .btn.disabled,
-    .btn[disabled] {
+    .btnLogin:hover,
+    .btnLogin:active,
+    .btnLogin.active,
+    .btnLogin.disabled,
+    .btnLogin[disabled] {
         background-color: #e6e6e6;
     }
 
-    .btn-large {
+    .btnLogin-large {
         padding: 9px 14px;
         font-size: 15px;
         line-height: normal;
@@ -52,7 +52,7 @@
         border-radius: 8px;
     }
 
-    .btn:hover {
+    .btnLogin:hover {
         color: #333333;
         text-decoration: none;
         background-color: #e6e6e6;
@@ -64,17 +64,17 @@
         transition: background-position 0.1s linear;
     }
 
-    .btn-primary,
-    .btn-primary:hover {
+    .btnLogin-primary,
+    .btnLogin-primary:hover {
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
         color: #ffffff;
     }
 
-    .btn-primary.active {
+    .btnLogin-primary.active {
         color: rgba(255, 255, 255, 0.75);
     }
 
-    .btn-primary {
+    .btnLogin-primary {
         background-color: #bae240;
         background-image: -moz-linear-gradient(top, #cdf24d, #bae240);
         background-image: -ms-linear-gradient(top, #cdf24d, #bae240);
@@ -87,11 +87,11 @@
         font-weight: bold;
     }
 
-    .btn-primary:hover,
-    .btn-primary:active,
-    .btn-primary.active,
-    .btn-primary.disabled,
-    .btn-primary[disabled] {
+    .btnLogin-primary:hover,
+    .btnLogin-primary:active,
+    .btnLogin-primary.active,
+    .btnLogin-primary.disabled,
+    .btnLogin-primary[disabled] {
         filter: none;
         background-color: #bae240;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
@@ -99,7 +99,7 @@
         transition: .3s;
     }
 
-    .btn-block {
+    .btnLogin-block {
         width: 100%;
         display: block;
         border: none;
@@ -135,7 +135,7 @@
         text-align: center;
     }
 
-    input {
+    .login input {
         width: 100%;
         font-family: 'Poppins', sans-serif;
         margin-bottom: 10px;
@@ -152,23 +152,23 @@
     }
 
 
-    input:focus {
+    .login input:focus {
         background-color: white;
         transition: 1s;
         color: #092756;
         box-shadow: none;
     }
 
-    .subTexto {
+    .login .subTexto {
         text-align: center;
         font-size: 14px;
         color: white;
     }
 
-    .registro,
-    .registro:active,
-    .registro.active,
-    .registro:disabled {
+    .login .registro,
+    .login .registro:active,
+    .login.registro.active,
+    .login .registro:disabled {
         text-decoration: none;
         color: #bae240;
     }
@@ -178,7 +178,7 @@
         font-weight: bold;
     }
 
-    .logo {
+    .login .logo {
         padding: 0px 110px 50px 105px;
         margin: auto;
         position: relative;
@@ -191,7 +191,339 @@
 
     .password,
     .input,
-    .btn-primary,
+    .btnLogin-primary,
     .condiciones {
         letter-spacing: 1.1px;
+    }
+
+    .btnRegister {
+        display: inline-block;
+        font-family: 'Poppins', sans-serif;
+        *display: inline;
+        *zoom: 1;
+        margin-top: 5px;
+        vertical-align: middle;
+        cursor: pointer;
+        *margin-left: .3em;
+    }
+
+    .btnRegister:hover,
+    .btnRegister:active,
+    .btnRegister.active,
+    .btnRegister.disabled,
+    .btnRegister[disabled] {
+        background-color: #e6e6e6;
+    }
+
+    .btnRegister-large {
+        padding: 9px 14px;
+        font-size: 15px;
+        line-height: normal;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        background-color: #1c84f6;
+        font-weight: bold;
+        transition: .3s;
+        box-shadow: none;
+    }
+
+    .btnRegister-primary,
+    .btnRegister-primary:hover {
+        color: #ffffff;
+        letter-spacing: 1.1px;
+    }
+
+    .btnRegister-primary:hover,
+    .btnRegister-primary:active,
+    .btnRegister-primary.active,
+    .btnRegister-primary.disabled,
+    .btnRegister-primary[disabled] {
+        filter: none;
+        background-color: #1c84f6;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0px 10px rgba(0, 0, 0, 0.4);
+        transition: .3s;
+    }
+
+    .btnRegister-block {
+        width: 100%;
+        display: block;
+        border: none;
+    }
+
+    .bodyRegister {
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+        font-family: 'Poppins', sans-serif;
+        background: #eeeeee;
+    }
+
+    .register {
+        font-family: 'Poppins', sans-serif;
+        position: fixed;
+        top: 35%;
+        left: 50%;
+        margin: -150px 0 0 -150px;
+        width: 300px;
+        height: 300px;
+    }
+
+    .register input {
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 10px;
+        background: white;
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 15px;
+        color: #c5c5c5;
+        border: none;
+        border-radius: 8px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0px 20px rgba(0, 0, 0, 0.1);
+        transition: 1s;
+    }
+
+    .register input:focus {
+        background-color: white;
+        transition: 1s;
+        color: #092756;
+        box-shadow: none;
+    }
+
+    .register .subTexto {
+        text-align: center;
+        font-size: 14px;
+        color: darkslategray;
+    }
+
+    .register .registro,
+    .register .registro:active,
+    .register .registro.active,
+    .register .registro:disabled {
+        text-decoration: none;
+        color: dodgerblue;
+    }
+
+    .registro:hover {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .register .logo {
+        padding: 0px 34px 0px 34px;
+        margin: auto;
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .register .condiciones {
+        position: fixed;
+        width: 100%;
+        font-size: 14px;
+        color: darkslategray;
+        bottom: 5px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .register .condiciones .registro {
+        text-decoration: none;
+    }
+
+    .register .sub {
+        padding: 0px 0px 50px 0px;
+        font-size: 14px;
+        text-align: center;
+        color: dodgerblue;
+    }
+
+    /*Escoger Universidad*/
+
+    .selectorU {
+        margin-bottom: 10px;
+        text-align: center
+    }
+
+    .drop-menu {
+        width: 300px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 2px rgb(204, 204, 204);
+        transition: all .5s ease;
+        position: relative;
+        font-size: 15px;
+        color: gray;
+        text-align: left;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .drop-menu .desactivado {
+        color: gray;
+    }
+
+    .drop-menu .select {
+        cursor: pointer;
+        display: block;
+        padding: 10px;
+    }
+
+    .drop-menu .select i {
+        font-size: 14px;
+        color: #888;
+        cursor: pointer;
+        transition: all .5s ease;
+        float: right;
+        margin: 5px;
+    }
+
+    .drop-menu:hover {
+        box-shadow: 0 0 4px rgb(204, 204, 204)
+    }
+
+    .drop-menu:active {
+        background-color: #f8f8f8;
+    }
+
+    .drop-menu.active:hover,
+    .drop-menu.active {
+        box-shadow: 0 0 4px rgb(204, 204, 204);
+        border-radius: 5px 5px 0 0;
+        background-color: #f8f8f8;
+    }
+
+    .drop-menu.active .select i {
+        transform: rotate(180deg)
+    }
+
+    .drop-menu .dropeddown {
+        position: absolute;
+        background-color: #fff;
+        width: 100%;
+        left: 0;
+        margin-top: 1px;
+        box-shadow: 0 1px 2px rgb(204, 204, 204);
+        border-radius: 0 1px 5px 5px;
+        overflow: hidden;
+        display: none;
+        max-height: 144px;
+        overflow-y: auto;
+        z-index: 9
+    }
+
+    .drop-menu .dropeddown li {
+        padding: 10px;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .drop-menu .dropeddown {
+        padding: 0;
+        list-style: none;
+    }
+
+    .drop-menu .dropeddown li:hover {
+        background-color: #bae240;
+        color: #fff;
+    }
+
+    .drop-menu .dropeddown li:active {
+        background-color: #a2d111;
+        color: #fff
+    }
+
+    .escogerIdioma {
+        padding: 0px 0px 50px 0px;
+        font-size: 14px;
+        text-align: center;
+        color: darkslategrey;
+    }
+
+    .confNombre {
+        padding: 0px 0px 0px 0px;
+        font-size: 14px;
+        text-align: center;
+        color: darkslategrey;
+    }
+
+    .anuncioAudio {
+        padding: 0px 0px 0px 0px;
+        font-size: 14px;
+        text-align: left;
+        display: inline-block;
+        color: darkslategrey;
+    }
+
+    .azul {
+        color: dodgerblue;
+        font-weight: bold;
+    }
+
+    .verde {
+        color: #bae240;
+        font-weight: bold;
+    }
+
+    .progreso {
+        position: fixed;
+        width: 300px;
+        margin: auto;
+        text-align: center;
+        left: 0;
+        right: 0;
+        bottom: 30px;
+    }
+
+    .linea {
+        width: 300px;
+    }
+
+    .ciclaN {
+        display: block;
+        margin-bottom: 5px;
+        margin-left: 20px;
+    }
+
+    .ciclaR {
+        display: block;
+        margin-bottom: 5px;
+        margin-left: 80px;
+    }
+
+    .ciclaA {
+        display: block;
+        margin-bottom: 5px;
+        margin-left: 150px;
+    }
+
+    .h3 {
+        width: 300px;
+        text-align: center;
+        margin-bottom: 5px;
+        margin-left: 20px;
+
+    }
+
+    .audio {
+        position: relative;
+        margin: auto;
+    }
+
+    .botonAudio {
+        width: 100%;
+    }
+
+
+
+    .anuncioAudio {
+        padding: 0px 0px 0px 0px;
+        font-size: 14px;
+        text-align: left;
+        display: inline-block;
+        color: darkslategrey;
     }

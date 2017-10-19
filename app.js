@@ -3,28 +3,22 @@ const express = require('express');
 // creamos la variable app 
 var app = express();
 // requerimos el módulo path
-// viene por defecto en node, no debemos instalarlo
 var path = require('path');
 //modulo mongoose en vez de body-parser
-var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+//rutas al api
+var api = require('./api.js');
 
-//var api = require('./api.js');
-
-
-//renderizacion del lado del cliente
-mongoose.connect('mongodb://localhost/pruebaHablame', {
-useMongoClient: true,
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use('/api', api);
 
 // definimos las carpetas de archivos estáticos
 app.use('/public', express.static('public'));
-
-
 // definimos el comportamiento del root
-app.get('*', (request, response) => {
+app.get('*', (req, res) => {
   // enviamos el archivo index.html
-  console.log('Agrega index');
-  response.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 
