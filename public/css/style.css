@@ -1,3 +1,7 @@
+    body{
+        margin: 0 auto;
+    }
+
     @import url(https://fonts.googleapis.com/css?family=Poppins);
     .btnLogin {
         display: inline-block;
@@ -191,8 +195,7 @@
 
     .password,
     .input,
-    .btnLogin-primary,
-    .condiciones {
+    .btnLogin-primary {
         letter-spacing: 1.1px;
     }
 
@@ -263,7 +266,7 @@
     .register {
         font-family: 'Poppins', sans-serif;
         position: fixed;
-        top: 35%;
+        top: 50%;
         left: 50%;
         margin: -150px 0 0 -150px;
         width: 300px;
@@ -329,7 +332,6 @@
         color: darkslategray;
         bottom: 5px;
         margin: auto;
-        text-align: center;
     }
 
     .register .condiciones .registro {

@@ -34,7 +34,7 @@ var view = {
         div.innerHTML = `
         <div class='bodyRegister'>
         <div class='register'>
-            <img class="logo" src="img/logoWord.png">
+            <img class="logo" src="public/img/logoWord.png">
             <p class="sub">Aprende idiomas mientras conoces hablantes nativos de forma segura</p>
             <div class="selectorU">
                 <div class="drop-menu">
