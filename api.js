@@ -7,19 +7,20 @@ api.get('/', (req, res) => {
 	res.json({message: 'working'});
 });
 
-const url = 'mongodb://localhost/pruebaHablame';
+const url = 'mongodb://localhost/hablame';
 var db = null;
 
 
 client.connect(url, (err, database) => {
 if(!err){
 	db = database;
+  console.log('hablame : Conexión establecida a Mongo Database')
 	} else {
-		console.log('Error de conexión a Mongo')
+		console.log('Error de conexión a Mongo Database')
 	}
 });
 
-api.route('/crearusuarios')
+api.route('/usuarios')
   .get((req,res)=>{
     db.collection('usuarios')
       .find({})
@@ -34,11 +35,11 @@ api.route('/crearusuarios')
 
 	.post((req,res)=>{
 		db.collection('usuarios')
-    .find({email:req.body.email})
+    .find({codigo:req.body.codigo})
     .toArray((err,usuarios) =>{
       if(!err && usuarios.length == 0){
         var nuevoUsuario={
-          email: req.body.email,
+          codigo: req.body.codigo,
           nombre: req.body.nombre,
           apellido: req.body.apellido,
         };

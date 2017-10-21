@@ -42,7 +42,7 @@ var view = {
                         <span class="desactivado">universidad</span>
                         <i class="fa fa-chevron-down"></i>
                     </div>
-                    <input type="hidden" name="gender">
+                    <input type="hidden" name="universidad">
                     <ul class="dropeddown">
                         <li id="male">Icesi</li>
                         <li id="female">Javeriana</li>
@@ -51,7 +51,8 @@ var view = {
                 </div>
             </div>
             <form method="post">
-                <input type="text" name="p" placeholder="código" required="required" />
+                <input type="text" name="codigo" placeholder="código" required="required" />
+                <input type="text" name="contrasena" placeholder="contraseña" required="required" />
                 <button href="/nombre" type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Continuar</button>
             </form>
             <p class="subTexto">¿Ya tienes cuenta? <a class="registro" href="/login">Iniciar sesión</a></p>

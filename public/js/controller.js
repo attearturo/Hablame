@@ -10,9 +10,9 @@ var controller = function controller(view, model) {
 
     console.log('Se introducen datos en el formulario');
     var parametros = new URLSearchParams();
-    parametros.set('email', 'gomez@hotmail.com');
-    parametros.set('nombre', 'Carlos');
-    parametros.set('apellido', 'Pepito');
+    parametros.set('email', email);
+    parametros.set('nombre', nombre);
+    parametros.set('apellido', apellido);
     //parametros.set('apellido', input.value);
 
     fetch(`http://localhost:3001/api/crearusuarios`,{
