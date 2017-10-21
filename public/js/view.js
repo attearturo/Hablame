@@ -69,6 +69,10 @@ var view = {
         main.innerHTML = '';
         switch(location.pathname){
 
+            default:
+            main.appendChild(this.renderLogin());   
+            break;
+
             case '/login':
             main.appendChild(this.renderLogin());      
             break;
