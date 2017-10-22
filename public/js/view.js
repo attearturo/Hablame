@@ -19,13 +19,9 @@ var view = {
 
        form.addEventListener('submit', (e) =>{
         e.preventDefault();
-        var user = e.target.user.value;
-        var data = {
-            password: e.target.password.value,
-        };
-        this.onFormSubmit(user,data);
+        console.log('Presiona boton');
+        this.onLogin(e.target.user.value, e.target.password.value);
     });
-
        return form;
    },
 
