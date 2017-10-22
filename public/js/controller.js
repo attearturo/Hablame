@@ -6,11 +6,11 @@ var controller = function controller(view, model) {
      console.log('Error en fetch')
 	}
 
-	view.onFormSubmit = (email, nombre, apellido) => {
+	view.onFormSubmit = (codigo, nombre, apellido) => {
 
     console.log('Se introducen datos en el formulario');
     var parametros = new URLSearchParams();
-    parametros.set('email', email);
+    parametros.set('codigo', codigo);
     parametros.set('nombre', nombre);
     parametros.set('apellido', apellido);
     //parametros.set('apellido', input.value);
