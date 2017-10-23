@@ -20,26 +20,29 @@ var controller = function controller(view, model) {
       if(res.mensaje == 'Acceso otorgado'){
         console.log(res);
         view.usuario = res.usuario;
-        history.pushState('login', 'Login', '/register');
+        history.pushState('login', 'registro', '/idiom');
         view.render();
       }
     });
    };
 
-   view.onRegistro = (codigo, nombre, apellido) => {
+   view.onRegistro = (universidad, codigo, contrasena) => {
 
     console.log('Se introducen datos en el formulario');
     var params = new URLSearchParams();
+    params.set('universidad', universidad);
     params.set('codigo', codigo);
-    params.set('nombre', nombre);
-    params.set('apellido', apellido);
+    params.set('contrasena', contrasena);
 
-    fetch(`http://localhost:3001/api/usuarios`,{
+    fetch(`${location.origin}/api/usuarios`,{
         method: 'POST',
         body: params
     })
     .then(res => res.json())
     .then((res)=> console.log(res));
+    
+        history.pushState('registro', 'login', '/login');
+        view.render();
 
         //location.pathname = '/login'
 };

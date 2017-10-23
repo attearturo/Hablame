@@ -39,15 +39,17 @@ api.route('/usuarios')
   .toArray((err,usuarios) =>{
     if(!err && usuarios.length == 0){
       var nuevoUsuario={
+        universidad: req.body.universidad,
         codigo: req.body.codigo,
         contrasena: req.body.contrasena,
-        apellido: req.body.apellido,
       };
       db.collection('usuarios').insert(nuevoUsuario,(errInsert) => {
-        res.json({ mensaje: 'Correo suscrito exitosamente.' });
+        res.json({ mensaje: 'Usuario suscrito exitosamente.' });
+        history.pushState('registro', 'login', '/login');
+        view.render();
       });
     } else {
-      res.json({mensaje:'Lo siento, este correo ya existe.'});
+      res.json({mensaje:'Lo sentimos, este código ya se utiliza.'});
     }
   });
 });
