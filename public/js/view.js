@@ -1,5 +1,6 @@
 var view = {
-
+  usuario: null,
+  usuarios:null,
 
     renderLogin: function renderLogin(){
 
@@ -70,7 +71,8 @@ var view = {
     renderIdiom: function renderIdiom(){
         div = document.createElement('div');
         div.innerHTML = `
-        <div class="login">
+        <div class='bodyRegister'>
+        <div class='register'>
         <p class="escogerIdioma">Indica el idioma que quieres <e class="azul">aprender</e> y el que puedes
             <e class="verde">enseñar</e>
         </p>
@@ -95,9 +97,7 @@ var view = {
                     <span class="desactivado">enseñaré</span>
                     <i class="fa fa-chevron-down"></i>
                 </div>
-                <input type="hidden" name="aprendere
-
-                ">
+                <input type="hidden" name="aprendere">
                 <ul class="dropeddown">
                     <li id="español">Español</li>
                     <li id="ingles">Ingles</li>
@@ -112,8 +112,9 @@ var view = {
     </div>
 
     <p class="progreso">
-    <img class="ciclaR"src="img/cicla.png">
-    <img class="linea" src="img/line.png"></p>
+    <img class="ciclaR"src="public/img/cicla.png">
+    <img class="linea" src="public/img/line.png"></p>
+    </div>
         `;
 
         var universidad = div.querySelector('.desactivado');
@@ -128,6 +129,32 @@ var view = {
 
         return div;
     },
+
+     renderHome: function renderHome(){
+    var div = document.createElement('div');
+    div.innerHTML = ``;
+
+    if(!this.usuarios){
+      div.innerHTML += `
+        <h2>Cargando...</h2>
+      `;
+    } else {
+      div.innerHTML += '<button id="toLogin">login</button>';
+      this.usuarios.sort((a, b) => a.email < b.email).forEach(user => {
+        div.innerHTML += `
+          <h2>
+            <img src="fotos/${user.foto}" height="30" />
+            ${user.email}
+          </h2>
+        `;
+      });
+
+      div.querySelector('#toLogin').addEventListener('click', () => {
+        this.render('login');
+      });
+    }
+    return div;
+  },
 
 
     render: function render() {

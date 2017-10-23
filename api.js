@@ -45,8 +45,6 @@ api.route('/usuarios')
       };
       db.collection('usuarios').insert(nuevoUsuario,(errInsert) => {
         res.json({ mensaje: 'Usuario suscrito exitosamente.' });
-        history.pushState('registro', 'login', '/login');
-        view.render();
       });
     } else {
       res.json({mensaje:'Lo sentimos, este código ya se utiliza.'});
