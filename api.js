@@ -59,7 +59,7 @@ api.route('/login')
   .toArray((err, usuarios) => {
     if(!err && usuarios.length > 0){
       res.json({
-        mensaje: 'Login exitoso',
+        mensaje: 'Acceso otorgado',
         usuario: usuarios[0]
       });
     } else {
