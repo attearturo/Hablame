@@ -69,4 +69,31 @@ api.route('/login')
 });
 
 
+app.post('subirFoto/:codigo', (req, res) => {
+  if (!req.files){
+    return res.json({ mensaje: 'Sin archivo' });
+  }
+ 
+  console.log(req.params.codigo, req.body.texto);
+  var foto = req.files.foto;
+ 
+  foto.mv(path.join(__dirname, `public/gallery/${foto.name}`), function(err) {
+    if(!err){
+      res.json({ mensaje: 'ok' });
+
+      db.collection('usuarios')
+        .updateOne({ codigo: req.params.codigo }, { 
+          $set: {
+            foto: foto.name,
+            texto: req.body.texto
+          }
+        });
+
+    }else{
+      res.json({ mensaje: 'error', error: err });
+    }
+  });
+});
+
+
 module.exports = api;

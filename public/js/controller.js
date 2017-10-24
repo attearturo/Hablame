@@ -1,9 +1,9 @@
 var controller = function controller(view, model) {
 
-	if(self.fetch) {
-        console.log('Fetch funcionando')
+  	if(self.fetch) {
+      console.log('Fetch funcionando')
     } else {
-       console.log('Error en fetch')
+     console.log('Error en fetch')
    }
 
    view.onLogin = (codigo, contrasena) => {
@@ -24,9 +24,9 @@ var controller = function controller(view, model) {
         view.render();
       }
     });
-   };
+  };
 
-   view.onRegistro = (universidad, codigo, contrasena) => {
+  view.onRegistro = (universidad, codigo, contrasena) => {
 
     console.log('Se introducen datos en el formulario');
     var params = new URLSearchParams();
@@ -35,19 +35,35 @@ var controller = function controller(view, model) {
     params.set('contrasena', contrasena);
 
     fetch(`${location.origin}/api/usuarios`,{
-        method: 'POST',
-        body: params
+      method: 'POST',
+      body: params
     })
     .then(res => res.json())
     .then((res)=> console.log(res));
-    
-        history.pushState('registro', 'login', '/login');
-        view.render();
 
-        //location.pathname = '/login'
-};
+    history.pushState('registro', 'login', '/login');
+    view.render();
 
-view.render();
+          //location.pathname = '/login'
+        };
+
+        vista.onSubirFoto = (codigo, foto, texto) => {
+          var params = new FormData();
+          params.set('foto', foto);
+          params.set('texto', texto);
+
+          fetch(`${location.origin}/api/gallery/${codigo}`, {
+            method: 'POST',
+            body: params
+          })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res);
+            vista.render();
+          });
+        };
+
+  view.render();
 }
 
 // llamamos la función controlador y le pasamos la vista y los datos

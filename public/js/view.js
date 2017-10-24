@@ -140,11 +140,11 @@ var view = {
       `;
     } else {
       div.innerHTML += '<button id="toLogin">login</button>';
-      this.usuarios.sort((a, b) => a.email < b.email).forEach(user => {
+      this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
         div.innerHTML += `
           <h2>
             <img src="fotos/${user.foto}" height="30" />
-            ${user.email}
+            ${user.codigo}
           </h2>
         `;
       });
@@ -153,6 +153,36 @@ var view = {
         this.render('login');
       });
     }
+    return div;
+  },
+
+  renderProfile: function renderProfile(){
+    var div = document.createElement('div');
+
+    div.innerHTML = `
+      <h1>${this.usuario.codigo}</h1>
+    `;
+
+    if(this.usuario.foto){
+      div.innerHTML += `
+        <img src="fotos/${this.usuario.foto}" />
+        <p>${this.usuario.texto}</p>
+      `;
+    } else {
+      div.innerHTML += `
+        <form>
+          <input type="file" name="foto" />
+          <textarea name="texto"></textarea>
+          <button type="submit">subir</submit>
+        </form>
+      `;
+
+      div.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
+      });
+    }
+
     return div;
   },
 
@@ -177,6 +207,14 @@ var view = {
 
             case '/idiom':
             main.appendChild(this.renderIdiom());
+            break;
+
+            case '/home':
+            main.appendChild(this.renderHome());
+            break;
+
+            case '/profile':
+            main.appendChild(this.renderProfile());
             break;
         }
     }
