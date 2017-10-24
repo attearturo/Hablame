@@ -47,7 +47,7 @@ var controller = function controller(view, model) {
           //location.pathname = '/login'
         };
 
-        vista.onSubirFoto = (codigo, foto, texto) => {
+        view.onSubirFoto = (codigo, foto, texto) => {
           var params = new FormData();
           params.set('foto', foto);
           params.set('texto', texto);
@@ -59,7 +59,7 @@ var controller = function controller(view, model) {
           .then((res) => res.json())
           .then((res) => {
             console.log(res);
-            vista.render();
+            view.render();
           });
         };
 
