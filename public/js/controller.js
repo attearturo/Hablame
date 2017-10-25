@@ -20,7 +20,7 @@ var controller = function controller(view, model) {
       if(res.mensaje == 'Acceso otorgado'){
         console.log(res);
         view.usuario = res.usuario;
-        history.pushState('login', 'registro', '/idiom');
+        history.pushState('login', 'registro', '/home');
         view.render();
       }
     });
