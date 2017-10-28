@@ -2,14 +2,15 @@
 font-family: 'Poppins',
 sans-serif;
 
+p{
+    margin: 0 0 10px;
+}
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-
-/* perfect-scrollbar v0.6.13 */
 
 .ps-container {
     -ms-touch-action: auto;
@@ -2051,7 +2052,7 @@ fieldset[disabled] .navbar .btn-link:focus {
     border-radius: 0px 0px 10px 10px;
 }
 
-input[type=text] {
+.card input[type=text] {
     margin-top: 10px;
     margin-left: 10px;
     font-size: 16px;

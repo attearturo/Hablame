@@ -52,7 +52,7 @@ var view = {
                 <input type="password" name="contrasena" placeholder="contraseña" required="required" />
                 <button href="/nombre" type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Continuar</button>
             </form>
-            <p class="subTexto">¿Ya tienes cuenta? <a class="registro" href="/login">Iniciar sesión</a></p>
+            <p class="subTexto">¿Ya tienes cuenta? <a class="registro" href="/home">Iniciar sesión</a></p>
             <p class="condiciones">Acepto las <a class="registro">Condiciones</a> y la <a class="registro">Privacidad</a> de Habláme</p>
           </div>
         </div>
@@ -132,7 +132,183 @@ var view = {
 
      renderHome: function renderHome(){
     var div = document.createElement('div');
-    div.innerHTML = ``;
+    div.innerHTML += `
+    
+    <div class="col-lg-2">
+    </div>
+    <div class="wrapper col-lg-9 col-md-offset-3w">
+
+        <div class="sidebar col-lg-3 col-md-3" data-color="blue" data-image="img/sidebar-1.jpg">
+            <div class="logo">
+                <img class="simple-text" src="img/logo.png">
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="/home">
+                            <i class="material-icons">public</i>
+                            <p>Todas las preguntas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">import_contacts</i>
+                            <p>Aprender Alemán</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href=".#">
+                            <i class="material-icons">school</i>
+                            <p>Enseñar Español</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="material-icons text-gray">add_box</i>
+                            <p>CREAR PREGUNTA</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-panel col-lg-9 col-md-9">
+
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Tablero de preguntas
+                        </a>
+                        <form class="navbar-form navbar-right" role="search">
+
+                            <div class="form-group is-empty">
+                                <input type="text" class="form-control" placeholder="Buscar">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">person</i>
+                                    <p class="hidden-lg hidden-md">Perfil</p>
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">notifications</i>
+                                    <span class="notification">5</span>
+                                    <p class="hidden-lg hidden-md">Notificaciones</p>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Mike John responded to your email</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You have 5 new tasks</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You're now friend with Andrew</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another Notification</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another One</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="./notifications.html" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">message</i>
+                                    <p class="hidden-lg hidden-md">Chat</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="row">
+                            <div class="card card-stats">
+                                <div class="card-gallery" data-background-color="">
+                                    <i class="material-icons">image</i>
+                                </div>
+
+                                <div class="card-content">
+                                    <div class="card-header" data-background-color="">
+                                        <i class="material-icons">person</i>
+                                    </div>
+                                    <p class="category">
+                                        <Strong>Frank Murlle</Strong>
+                                    </p>
+                                    <h3 class="title"><a href="#">¿Qué significa?</a></h3>
+                                    <p class="category">Was fúr ein Gericht its das und wo ka</p>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="izquierda">
+                                        <div class="state">
+                                            <a href="#">
+                                            <i class="material-icons">favorite_border</i> Me gusta</a>
+                                        </div>
+                                        <div class="state">
+                                            <a href="#"><i class="material-icons">chat_bubble_outline</i> Comentarios</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="derecha">
+                                        <div class="stats">
+                                            <i class="material-icons">location_on</i> Universidad Icesi
+                                        </div>
+                                        <div class="stats">
+                                            <i class="material-icons">date_range</i> Hace 24 horas
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-comentarios">
+                                    <div class="comentarioHecho">
+                                        <div class="card-header" data-background-color="">
+                                            <i class="material-icons">person</i>
+                                        </div>
+                                        <h4 class="title">Otro usuario</h4>
+                                        <p class="category">Was fúr ein Gericht its das und wo kann ich ihn finden?</p>
+
+                                    </div>
+                                    <div class="hacerComentario">
+                                        <div class="card-header" data-background-color="">
+                                            <i class="material-icons">person</i>
+                                        </div>
+                                        <form>
+                                            <input type="text" name="comentar" placeholder="Escribe un comentario...">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    `;
 
     if(!this.usuarios){
       div.innerHTML += `
@@ -143,7 +319,7 @@ var view = {
       this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
         div.innerHTML += `
           <h2>
-            <img src="fotos/${user.foto}" height="30" />
+            <img src="gallery/${user.foto}" height="30" />
             ${user.codigo}
           </h2>
         `;
@@ -155,6 +331,7 @@ var view = {
     }
     return div;
   },
+
 
   renderProfile: function renderProfile(){
     var div = document.createElement('div');

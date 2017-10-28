@@ -41,7 +41,7 @@ var controller = function controller(view, model) {
     .then(res => res.json())
     .then((res)=> console.log(res));
 
-    history.pushState('registro', 'login', '/login');
+    history.pushState('registro', 'login', '/home');
     view.render();
 
           //location.pathname = '/login'

@@ -163,7 +163,7 @@
         box-shadow: none;
     }
 
-    .login .subTexto {
+    .bodyLogin .login .subTexto {
         text-align: center;
         font-size: 14px;
         color: white;
@@ -296,7 +296,7 @@
         box-shadow: none;
     }
 
-    .register .subTexto {
+    .bodyRegister .register .subTexto {
         text-align: center;
         font-size: 14px;
         color: darkslategray;
@@ -338,8 +338,8 @@
         text-decoration: none;
     }
 
-    .register .sub {
-        padding: 0px 0px 50px 0px;
+    .bodyRegister .register .sub {
+        padding: 10px 0px 40px 0px;
         font-size: 14px;
         text-align: center;
         color: dodgerblue;
@@ -519,9 +519,7 @@
     .botonAudio {
         width: 100%;
     }
-
-
-
+    
     .anuncioAudio {
         padding: 0px 0px 0px 0px;
         font-size: 14px;
