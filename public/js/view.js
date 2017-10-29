@@ -138,9 +138,9 @@ var view = {
     </div>
     <div class="wrapper col-lg-9 col-md-offset-3w">
 
-        <div class="sidebar col-lg-3 col-md-3" data-color="blue" data-image="img/sidebar-1.jpg">
+        <div class="sidebar col-lg-3 col-md-3" data-color="blue" data-image="public/img/sidebar-1.jpg">
             <div class="logo">
-                <img class="simple-text" src="img/logo.png">
+                <img class="simple-text" src="public/img/logo.png">
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
