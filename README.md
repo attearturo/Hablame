@@ -8,6 +8,7 @@ git clone https://github.com/attearturo/Hablame
 npm install express --save
 npm install body-parser --save
 npm install mongodb --save
+npm install path --save
 
 Run: (From console)
 node app.js
