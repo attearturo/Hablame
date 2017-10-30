@@ -168,6 +168,12 @@ var view = {
                             <p>CREAR PREGUNTA</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="/login">
+                            <i class="material-icons text-gray">add_out</i>
+                            <p><Strong>Salir<Strong></p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -310,23 +316,18 @@ var view = {
 
     `;
 
-    if(!this.usuarios){
+    if(!this.usuario){
       div.innerHTML += `
         <h2>Cargando...</h2>
       `;
     } else {
-      div.innerHTML += '<button id="toLogin">login</button>';
-      this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
+      this.usuario.sort((a, b, c) => a.codigo < b.codigo).forEach(user => {
         div.innerHTML += `
           <h2>
             <img src="gallery/${user.foto}" height="30" />
             ${user.codigo}
           </h2>
         `;
-      });
-
-      div.querySelector('#toLogin').addEventListener('click', () => {
-        this.render('login');
       });
     }
     return div;

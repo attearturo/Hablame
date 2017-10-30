@@ -28,7 +28,7 @@ api.route('/usuarios')
     res.json(usuarios);
     if(!err){
     }else{
-      res.json({mensaje:'OK'});
+      res.json({mensaje:'ok'});
     }
   });
 })
@@ -59,7 +59,7 @@ api.route('/login')
   .toArray((err, usuarios) => {
     if(!err && usuarios.length > 0){
       res.json({
-        mensaje: 'Acceso otorgado',
+        mensaje: 'ok',
         usuario: usuarios[0]
       });
     } else {
