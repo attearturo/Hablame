@@ -52,7 +52,7 @@ var view = {
                 <input type="password" name="contrasena" placeholder="contraseña" required="required" />
                 <button href="/nombre" type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Continuar</button>
             </form>
-            <p class="subTexto">¿Ya tienes cuenta? <a class="registro" href="/home">Iniciar sesión</a></p>
+            <p class="subTexto">¿Ya tienes cuenta? <a class="registro" href="/login">Iniciar sesión</a></p>
             <p class="condiciones">Acepto las <a class="registro">Condiciones</a> y la <a class="registro">Privacidad</a> de Habláme</p>
           </div>
         </div>
@@ -130,14 +130,45 @@ var view = {
         return div;
     },
 
-     renderHome: function renderHome(){
+  renderProfile: function renderProfile(){
     var div = document.createElement('div');
-    div.innerHTML += `
-    
-    <div class="col-lg-2">
+
+    div.innerHTML = `
+      <h1>${this.usuario.codigo}</h1>
+    `;
+
+    if(this.usuario.foto){
+      div.innerHTML += `
+        <img src="fotos/${this.usuario.foto}" />
+        <p>${this.usuario.texto}</p>
+      `;
+    } else {
+      div.innerHTML += `
+        <form>
+          <input type="file" name="foto" />
+          <textarea name="texto"></textarea>
+          <button type="submit">subir</submit>
+        </form>
+      `;
+
+      div.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
+      });
+    }
+
+    return div;
+  },
+
+ renderHome: function renderHome(){
+        div = document.createElement('div');
+        if(!this.usuario){
+            location.pathname = '/login'
+    } else {
+        div.innerHTML += `
+        <div class="col-lg-2">
     </div>
     <div class="wrapper col-lg-9 col-md-offset-3w">
-
         <div class="sidebar col-lg-3 col-md-3" data-color="blue" data-image="public/img/sidebar-1.jpg">
             <div class="logo">
                 <img class="simple-text" src="public/img/logo.png">
@@ -153,7 +184,7 @@ var view = {
                     <li>
                         <a href="#">
                             <i class="material-icons">import_contacts</i>
-                            <p>Aprender Alemán</p>
+                            <p>Aprender Inglés</p>
                         </a>
                     </li>
                     <li>
@@ -171,7 +202,7 @@ var view = {
                     <li>
                         <a href="/login">
                             <i class="material-icons text-gray">add_out</i>
-                            <p><Strong>Salir<Strong></p>
+                            <p>Salir</p>
                         </a>
                     </li>
                 </ul>
@@ -244,127 +275,86 @@ var view = {
                     </div>
                 </div>
             </nav>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-
-                        <div class="row">
-                            <div class="card card-stats">
-                                <div class="card-gallery" data-background-color="">
-                                    <i class="material-icons">image</i>
-                                </div>
-
-                                <div class="card-content">
-                                    <div class="card-header" data-background-color="">
-                                        <i class="material-icons">person</i>
-                                    </div>
-                                    <p class="category">
-                                        <Strong>Frank Murlle</Strong>
-                                    </p>
-                                    <h3 class="title"><a href="#">¿Qué significa?</a></h3>
-                                    <p class="category">Was fúr ein Gericht its das und wo ka</p>
-
-                                </div>
-                                <div class="card-footer">
-                                    <div class="izquierda">
-                                        <div class="state">
-                                            <a href="#">
-                                            <i class="material-icons">favorite_border</i> Me gusta</a>
-                                        </div>
-                                        <div class="state">
-                                            <a href="#"><i class="material-icons">chat_bubble_outline</i> Comentarios</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="derecha">
-                                        <div class="stats">
-                                            <i class="material-icons">location_on</i> Universidad Icesi
-                                        </div>
-                                        <div class="stats">
-                                            <i class="material-icons">date_range</i> Hace 24 horas
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-comentarios">
-                                    <div class="comentarioHecho">
-                                        <div class="card-header" data-background-color="">
-                                            <i class="material-icons">person</i>
-                                        </div>
-                                        <h4 class="title">Otro usuario</h4>
-                                        <p class="category">Was fúr ein Gericht its das und wo kann ich ihn finden?</p>
-
-                                    </div>
-                                    <div class="hacerComentario">
-                                        <div class="card-header" data-background-color="">
-                                            <i class="material-icons">person</i>
-                                        </div>
-                                        <form>
-                                            <input type="text" name="comentar" placeholder="Escribe un comentario...">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        `;
 
 
+      this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
+        div.innerHTML += `
+        <div class="col-lg-8 col-md-8">
+        <div class="card card-stats">
+        <div class="card-gallery" data-background-color="">
+            <i class="material-icons">image</i>
+        </div>
+
+        <div class="card-content">
+            <div class="card-header" data-background-color="">
+                <img src="gallery/${user.foto}" height="30" />
+                <i class="material-icons">person</i>
+            </div>
+            <p class="category">
+                <Strong>${user.nombre}</Strong>
+            </p>
+            <h3 class="title"><a href="#">${user.post[0]}</a></h3>
+            <p class="category">${user.post[1]}</p>
+        </div>
+
+        <div class="card-footer">
+            <div class="izquierda">
+                <div class="state">
+                    <a href="#">
+                        <i class="material-icons">favorite_border</i> Me gusta</a>
+                    </div>
+                    <div class="state">
+                        <a href="#"><i class="material-icons">chat_bubble_outline</i> Comentarios</a>
+                    </div>
+                </div>
+
+                <div class="derecha">
+                    <div class="stats">
+                        <i class="material-icons">location_on</i> Universidad ${user.universidad}
+                    </div>
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> Hace ${user.post[2]}
+                    </div>
+                </div>
+            </div>
+            <div class="card-comentarios">
+                <div class="comentarioHecho">
+                    <div class="card-header" data-background-color="">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <h4 class="title">Otro usuario</h4>
+                    <p class="category">Was fúr ein Gericht its das und wo kann ich ihn finden?</p>
+
+                </div>
+                <div class="hacerComentario">
+                    <div class="card-header" data-background-color="">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <form>
+                        <input type="text" name="comentar" placeholder="Escribe un comentario...">
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    `;
+      });
+    
+    div.innerHTML += `
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     `;
 
-    if(!this.usuario){
-      div.innerHTML += `
-        <h2>Cargando...</h2>
-      `;
-    } else {
-      this.usuario.sort((a, b, c) => a.codigo < b.codigo).forEach(user => {
-        div.innerHTML += `
-          <h2>
-            <img src="gallery/${user.foto}" height="30" />
-            ${user.codigo}
-          </h2>
-        `;
-      });
     }
     return div;
   },
-
-
-  renderProfile: function renderProfile(){
-    var div = document.createElement('div');
-
-    div.innerHTML = `
-      <h1>${this.usuario.codigo}</h1>
-    `;
-
-    if(this.usuario.foto){
-      div.innerHTML += `
-        <img src="fotos/${this.usuario.foto}" />
-        <p>${this.usuario.texto}</p>
-      `;
-    } else {
-      div.innerHTML += `
-        <form>
-          <input type="file" name="foto" />
-          <textarea name="texto"></textarea>
-          <button type="submit">subir</submit>
-        </form>
-      `;
-
-      div.querySelector('form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
-      });
-    }
-
-    return div;
-  },
-
-
     render: function render() {
 
         var main = document.getElementById('main');

@@ -25,10 +25,13 @@ api.route('/usuarios')
   db.collection('usuarios')
   .find({})
   .toArray((err,usuarios)=>{
-    res.json(usuarios);
     if(!err){
+      res.json({ 
+        mensaje: 'ok', 
+        usuarios: usuarios,
+      });
     }else{
-      res.json({mensaje:'ok'});
+      res.json({ mensaje: 'error' });
     }
   });
 })

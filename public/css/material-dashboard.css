@@ -32,7 +32,6 @@ sans-serif;
 
 .wrapper {
     position: relative;
-    height: 100vh;
 }
 
 .sidebar{
@@ -305,8 +304,7 @@ sans-serif;
 }
 
 .main-panel > .content {
-    margin-top: 70px;
-    padding: 30px 15px;
+    margin-top: 75px;
     min-height: calc(100% - 123px);
 }
 
