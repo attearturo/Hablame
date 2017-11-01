@@ -33,6 +33,7 @@ view.onRegistro = (universidad, codigo, contrasena) => {
   params.set('universidad', universidad);
   params.set('codigo', codigo);
   params.set('contrasena', contrasena);
+  params.set('foto','predeterminado.jpg');
 
   fetch(`${location.origin}/api/usuarios`,{
     method: 'POST',
@@ -42,13 +43,31 @@ view.onRegistro = (universidad, codigo, contrasena) => {
   .then((res) => {
     if(res.mensaje == 'ok'){
       view.usuarios = res.usuarios;
+      // window.location('/idiom')
+      history.pushState('registro', 'login', '/idiom');
       view.render();
     }
   });
+};
 
-  history.pushState('registro', 'login', '/login');
-  view.render();
-  //location.pathname = '/login'
+view.onIdiom = (enseña, aprende) => {
+  console.log('Se introducen los idiomas');
+  var params = new URLSearchParams();
+  params.set('ensenare', enseña);
+  params.set('aprendere', aprende);
+
+  fetch(`${location.origin}/api/idioma`,{
+    method: 'POST',
+    body: params
+  })
+  .then(res => res.json())
+  .then((res) => {
+    if(res.mensaje == 'ok'){
+      view.usuarios = res.usuarios;
+      history.pushState('registro', 'login', '/home');
+      view.render();
+    }
+  });
 };
 
 view.onSubirFoto = (codigo, foto, texto) => {
@@ -63,12 +82,12 @@ view.onSubirFoto = (codigo, foto, texto) => {
   .then((res) => res.json())
   .then((res) => {
     console.log(res);
+    history.pushState('registro', 'login', '/home');
     view.render();
   });
 };
 
 view.render();
-
 
   fetch(`${location.origin}/api/usuarios`)
 
@@ -79,7 +98,6 @@ view.render();
       view.render();
     }
   });
-
 }
 
 controller(view);

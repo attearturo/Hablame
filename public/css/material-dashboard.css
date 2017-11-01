@@ -1256,6 +1256,7 @@ select.form-control[multiple],
     line-height: 19px;
     vertical-align: middle;
     display: block;
+    z-index: 100;
 }
 
 .navbar .navbar-text {
@@ -1879,10 +1880,15 @@ fieldset[disabled] .navbar .btn-link:focus {
     top: 1px;
     margin-right: 12px;
     opacity: .5;
+    background-size: cover;
+}
+.dropdown-menu.dropdown-with-icons li > a .material-icons .me {
+    opacity: 0;
 }
 
 .dropdown-menu li {
     position: relative;
+    background-size: cover;
 }
 
 .dropdown-menu li a:hover,
@@ -1920,6 +1926,7 @@ fieldset[disabled] .navbar .btn-link:focus {
     display: block;
     opacity: 0;
     filter: alpha(opacity=0);
+    background-size: cover;
 }
 
 .navbar-nav > li.open > .dropdown-menu,
@@ -1929,6 +1936,7 @@ fieldset[disabled] .navbar .btn-link:focus {
     filter: alpha(opacity=100);
     visibility: visible;
     margin-top: 0px;
+    background-size: cover;
 }
 
 .card {
@@ -2390,6 +2398,7 @@ fieldset[disabled] .navbar .btn-link:focus {
         float: left;
         line-height: 30px;
         margin-right: 8px;
+        z-index: 11;
     }
     .sidebar .nav-mobile-menu .open .dropdown-menu {
         position: static;

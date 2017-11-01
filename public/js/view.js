@@ -2,20 +2,38 @@ var view = {
   usuario: null,
   usuarios:null,
 
+
+activarDesplegable: function activarDesplegable(){
+      $('.drop-menu').click(function() {
+            $(this).attr('tabindex', 1).focus();
+            $(this).toggleClass('active');
+            $(this).find('.dropeddown').slideToggle(300);
+            console.log("Funciona desplegable")
+        });
+        $('.drop-menu').focusout(function() {
+            $(this).removeClass('active');
+            $(this).find('.dropeddown').slideUp(300);
+        });
+        $('.drop-menu .dropeddown li').click(function() {
+            $(this).parents('.drop-menu').find('span').text($(this).text());
+            $(this).parents('.drop-menu').find('input').attr('value', $(this).attr('id'));
+        });
+    },
+
     renderLogin: function renderLogin(){
 
        var form = document.createElement('form');
        form.setAttribute('method', 'post');
        form.innerHTML = `
-       <div class='bodyLogin'>
+           <div class='bodyLogin'>
        <div class='login'>
-       <img class="logo" src="public/img/logo.png">
-       <input id='usern' type="text" name="user" placeholder="código de tu universidad" required="required" />
-       <input id='pword' type="password" name="password" placeholder="contraseña" required="required" />
-       <button id='entrada' type="submit" class="btnLogin btnLogin-primary btnLogin-block btnLogin-large">Entrar</button>
-       <p class="subTexto">¿Eres nuevo? <a class="registro" href="/register">Crear una cuenta</a></p>
+           <img class="logo" src="public/img/logo.png">
+           <input id='usern' type="text" name="user" placeholder="código de tu universidad" required="required" />
+           <input id='pword' type="password" name="password" placeholder="contraseña" required="required" />
+           <button id='entrada' type="submit" class="btnLogin btnLogin-primary btnLogin-block btnLogin-large">Entrar</button>
+           <p class="subTexto">¿Eres nuevo? <a class="registro" href="/register">Crear una cuenta</a></p>
        </div>
-       </div>
+   </div>
        `;
 
        form.addEventListener('submit', (e) =>{
@@ -50,7 +68,7 @@ var view = {
             <form method="post">
                 <input type="text" name="codigo" placeholder="código" required="required" />
                 <input type="password" name="contrasena" placeholder="contraseña" required="required" />
-                <button href="/nombre" type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Continuar</button>
+                <button type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Continuar</button>
             </form>
             <p class="subTexto">¿Ya tienes cuenta? <a class="registro" href="/login">Iniciar sesión</a></p>
             <p class="condiciones">Acepto las <a class="registro">Condiciones</a> y la <a class="registro">Privacidad</a> de Habláme</p>
@@ -64,7 +82,6 @@ var view = {
           console.log(universidad);
           this.onRegistro(universidad, e.target.codigo.value, e.target.contrasena.value);
         });
-
         return div;
     },
 
@@ -80,7 +97,7 @@ var view = {
         <div class="selectorU">
             <div class="drop-menu">
                 <div class="select">
-                    <span class="desactivado">aprenderé</span>
+                    <span class="ensena">aprenderé</span>
                     <i class="fa fa-chevron-down"></i>
                 </div>
                 <input type="hidden" name="ensenare">
@@ -94,7 +111,7 @@ var view = {
         <div class="selectorU">
             <div class="drop-menu">
                 <div class="select">
-                    <span class="desactivado">enseñaré</span>
+                    <span class="aprende">enseñaré</span>
                     <i class="fa fa-chevron-down"></i>
                 </div>
                 <input type="hidden" name="aprendere">
@@ -106,7 +123,7 @@ var view = {
             </div>
         </div>
         <form method="post">
-            <button href="./idiom.html" type="submit" class="btn btn-primary btn-block btn-large">Continuar</button>
+            <button type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Continuar</button>
         </form>
         <p class="subTexto">Lo puedes modificar luego</p>
     </div>
@@ -117,16 +134,12 @@ var view = {
     </div>
         `;
 
-        var universidad = div.querySelector('.desactivado');
-          console.log(universidad);
-
         div.querySelector('form').addEventListener('submit', (e) => {
           e.preventDefault();
-          var universidad = this.querySelector('.desactivado').innerHTML;
-          console.log(universidad);
-          this.onRegistro(universidad, e.target.codigo.value, e.target.contrasena.value);
+          var ensena = div.querySelector('.ensena').innerHTML;
+          var aprende = div.querySelector('.aprende').innerHTML;
+          this.onIdiom(ensena, aprende);
         });
-
         return div;
     },
 
@@ -156,14 +169,14 @@ var view = {
         this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
       });
     }
-
     return div;
   },
 
+
  renderHome: function renderHome(){
-        div = document.createElement('div');
-        if(!this.usuario){
-            location.pathname = '/login'
+    div = document.createElement('div');
+    if(!this.usuario){
+         location.pathname = '/login'
     } else {
         div.innerHTML += `
     <div class="col-lg-2">
@@ -199,7 +212,7 @@ var view = {
                           <textarea class="introducirTexto" name="texto" placeholder="¿Qué quieres preguntar?"></textarea>
                           <input class="introducirImagen" type="file" name="foto" />
                           <button type="submit"><i class="material-icons text-gray">add_box</i>
-                          CREAR PREGUNTA</submit>
+                          CREAR PREGUNTA</button>
                         </form>  
                     </li>
                     <li>  
@@ -238,7 +251,7 @@ var view = {
                         <ul class="nav navbar-nav navbar-right">
 
                             <li>
-                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown" style='background-image: url("public/gallery/${this.usuario.foto}")'>
+                                <a href="pablo" class="dropdown-toggle me" data-toggle="dropdown" style='background-image: url("public/gallery/${this.usuario.foto}")'>
                                     <i class="material-icons">person</i>
                                     <p class="hidden-lg hidden-md">Perfil</p>
                                 </a>
@@ -280,33 +293,50 @@ var view = {
             </nav>
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row contenedorPreguntas">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         `;
 
+    div.querySelector('.contenedorPreguntas').appendChild(this.preguntaIndividual());
 
+    console.log(div.querySelector('form'))
       div.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
+        console.log("Sube foto");
         this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
       });
 
+  }
 
-      this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
-        div.innerHTML += `
+    return div;
+  },
+
+
+preguntaIndividual: function preguntaIndividual(){
+
+div = document.createElement('div');
+this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
+div.innerHTML += `
 <div class="col-lg-8 col-md-8">
     <div class="card card-stats">
-        <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.foto}")'>
+        <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.post[3] ? user.post[3] : "predeterminado.jpg"}")'>
             <i class="material-icons"></i>
         </div>
 
         <div class="card-content">
-             <div class="card-header" data-background-color="" style='background-image: url("public/gallery/${user.foto}")'>
+             <div class="card-header" data-background-color="" style='background-image: url("public/gallery/${user.foto ? user.foto : "predeterminado.jpg"}")'>
                 <i class="material-icons">person</i>
             </div>
             <p class="category">
                 <Strong>${user.nombre}</Strong>
             </p>
-            <h3 class="title"><a href="#">${user.post[0]}</a></h3>
-            <p class="category">${user.post[1]}</p>
+            <h3 class="title"><a href="#">${user.post[0] ? user.post[0] : ""}</a></h3>
+            <p class="category">${user.post[1] ? user.post[1] : ""}</p>
         </div>
 
         <div class="card-footer">
@@ -325,7 +355,7 @@ var view = {
                         <i class="material-icons">location_on</i> Universidad ${user.universidad}
                     </div>
                     <div class="stats">
-                        <i class="material-icons">date_range</i> Hace ${user.post[2]}
+                        <i class="material-icons">date_range</i> Hace ${user.post[2] ? user.post[2] : ""}
                     </div>
                 </div>
             </div>
@@ -349,20 +379,12 @@ var view = {
             </div>
         </div>
         </div>
-    `;
-      });
-    
-    div.innerHTML += `
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
+        `;
+        });
+        return div;
+    },
 
-    }
-    return div;
-  },
+
     render: function render() {
 
         var main = document.getElementById('main');
@@ -393,5 +415,6 @@ var view = {
             main.appendChild(this.renderProfile());
             break;
         }
+        this.activarDesplegable();
     }
 };

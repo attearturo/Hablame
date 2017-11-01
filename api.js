@@ -37,6 +37,7 @@ api.route('/usuarios')
 })
 
 .post((req,res)=>{
+  
   db.collection('usuarios')
   .find({codigo:req.body.codigo})
   .toArray((err,usuarios) =>{
@@ -45,12 +46,33 @@ api.route('/usuarios')
         universidad: req.body.universidad,
         codigo: req.body.codigo,
         contrasena: req.body.contrasena,
+        foto: req.body.foto,
       };
       db.collection('usuarios').insert(nuevoUsuario,(errInsert) => {
-        res.json({ mensaje: 'Usuario suscrito exitosamente.' });
+        if(!errInsert){
+          res.json({ mensaje: 'ok' });
+        } else {
+          res.json({mensaje:'Lo sentimos, este código ya se utiliza.'});
+        }
       });
     } else {
-      res.json({mensaje:'Lo sentimos, este código ya se utiliza.'});
+      res.json({ mensaje: 'No se pudo insertar usuario.' });
+    }
+  });
+});
+
+api.route('/idioma')
+.post((req, res) => { 
+  db.collection('usuarios')
+  .update({codigo:req.body.codigo}, {$set: {aprendere: req.body.codigo}})
+  .toArray((err, usuarios) => {
+    if(!err && usuarios.length > 0){
+      res.json({
+        mensaje: 'ok',
+        usuario: usuarios[0]
+      });
+    } else {
+      res.json({ mensaje: 'Idioma agregago' });
     }
   });
 });
@@ -66,7 +88,7 @@ api.route('/login')
         usuario: usuarios[0]
       });
     } else {
-      res.json({ mensaje: ' Usuario o contraseña incorrecto' });
+      res.json({ mensaje: 'Usuario o contraseña incorrecto' });
     }
   });
 });
