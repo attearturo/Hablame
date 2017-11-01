@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins);
-font-family: 'Poppins',
-sans-serif;
+
 
 .animated {
     -webkit-animation-duration: 1s;
@@ -32,10 +31,13 @@ sans-serif;
 
 .wrapper {
     position: relative;
+    font-family: 'Poppins', sans-serif;
 }
 
 .sidebar{
     width: 30%;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
 }
 
 .sidebar,
@@ -52,7 +54,7 @@ sans-serif;
 .sidebar .sidebar-wrapper,
 .off-canvas-sidebar .sidebar-wrapper {
     position: relative;
-    height: calc(100vh - 75px);
+    height: 100%;
     overflow: auto;
     width: 100%;
     z-index: 4;
@@ -242,7 +244,7 @@ sans-serif;
 
 .sidebar:before,
 .off-canvas-sidebar:before {
-    opacity: .33;
+    opacity: .1;
 }
 
 .sidebar:after,
@@ -2458,13 +2460,13 @@ fieldset[disabled] .navbar .btn-link:focus {
         position: fixed;
         display: block;
         top: 0;
-        height: 100vh;
+        height: 100%;
         width: 260px;
         right: 0;
         left: auto;
         z-index: 1032;
         visibility: visible;
-        background-color: #9A9A9A;
+        background-color: white;
         overflow-y: visible;
         border-top: none;
         text-align: left;
@@ -2486,7 +2488,7 @@ fieldset[disabled] .navbar .btn-link:focus {
         position: relative;
         z-index: 4;
         overflow-y: scroll;
-        height: calc(100vh - 61px);
+        height: 100%;
         width: 100%;
     }
     .sidebar::before,
@@ -2753,4 +2755,28 @@ fieldset[disabled] .navbar .btn-link:focus {
     .table-responsive {
         overflow: visible;
     }
+}
+
+.introducirTexto{
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 100px;
+    color: gray;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+    resize: none;
+}
+.introducirImagen{
+    border: 1 solid lightgrey;
+    border-radius: 5px;
+    color: gray;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent;
+    padding: 5px;
+    margin: 10px 5px 10px 5px;
 }

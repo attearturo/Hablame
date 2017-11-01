@@ -71,7 +71,7 @@ api.route('/login')
   });
 });
 
-api.route('subirFoto/:codigo')
+api.route('gallery/:codigo')
 .post((req, res) => {
   if (!req.files){
     return res.json({ mensaje: 'Sin archivo' });

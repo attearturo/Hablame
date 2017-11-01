@@ -194,13 +194,15 @@ var view = {
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="material-icons text-gray">add_box</i>
-                            <p>CREAR PREGUNTA</p>
-                        </a>
+                        <form>
+                          <textarea class="introducirTexto" name="texto" placeholder="¿Qué quieres preguntar?"></textarea>
+                          <input class="introducirImagen" type="file" name="foto" />
+                          <button type="submit"><i class="material-icons text-gray">add_box</i>
+                          CREAR PREGUNTA</submit>
+                        </form>  
                     </li>
-                    <li>
-                        <a href="/login">
+                    <li>  
+                        <a href="/login">       
                             <i class="material-icons text-gray">add_out</i>
                             <p>Salir</p>
                         </a>
@@ -281,17 +283,24 @@ var view = {
         `;
 
 
+      div.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
+      });
+
+
       this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
         div.innerHTML += `
         <div class="col-lg-8 col-md-8">
         <div class="card card-stats">
         <div class="card-gallery" data-background-color="">
+            <img class="foto" src="public/gallery/logoWord.png" height="30">
             <i class="material-icons">image</i>
         </div>
 
         <div class="card-content">
             <div class="card-header" data-background-color="">
-                <img src="gallery/${user.foto}" height="30" />
+                <img src="public/gallery/${user.foto}"/>
                 <i class="material-icons">person</i>
             </div>
             <p class="category">

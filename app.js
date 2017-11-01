@@ -15,12 +15,13 @@ app.use('/api', api);
 
 // definimos las carpetas de archivos estáticos
 app.use('/public', express.static('public'));
+app.use('/gallery', express.static('gallery'));
+
 // definimos el comportamiento del root
 app.get('*', (req, res) => {
   // enviamos el archivo index.html
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
-
 
 // iniciamos el servidor en el puerto 3000
 app.listen(3001, function () {
