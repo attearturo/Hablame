@@ -80,7 +80,7 @@ api.route('gallery/:codigo')
   console.log(req.params.codigo, req.body.texto);
   var foto = req.files.foto;
   
-  foto.mv(path.join(__dirname, `public/gallery/${foto.name}`), function(err) {
+  foto.mv(path.join(__dirname, `gallery/${foto.name}`), function(err) {
     if(!err){
       res.json({ mensaje: 'ok' });
 

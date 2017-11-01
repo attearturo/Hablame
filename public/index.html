@@ -39,11 +39,11 @@
     <script src="public/js/controller.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
-        /*Select Box js*/
         $('.drop-menu').click(function() {
             $(this).attr('tabindex', 1).focus();
             $(this).toggleClass('active');
             $(this).find('.dropeddown').slideToggle(300);
+            console.log("Funciona desplegable")
         });
         $('.drop-menu').focusout(function() {
             $(this).removeClass('active');

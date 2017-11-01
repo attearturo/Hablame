@@ -166,10 +166,11 @@ var view = {
             location.pathname = '/login'
     } else {
         div.innerHTML += `
-        <div class="col-lg-2">
+    <div class="col-lg-2">
     </div>
-    <div class="wrapper col-lg-9 col-md-offset-3w">
-        <div class="sidebar col-lg-3 col-md-3" data-color="blue" data-image="public/img/sidebar-1.jpg">
+    <div class="wrapper col-lg-8 col-md-offset-3w">
+
+        <div class="sidebar col-lg-3 col-md-3" data-color="blue" data-image="public/img/sidebar-3.jpg">
             <div class="logo">
                 <img class="simple-text" src="public/img/logo.png">
             </div>
@@ -184,13 +185,13 @@ var view = {
                     <li>
                         <a href="#">
                             <i class="material-icons">import_contacts</i>
-                            <p>Aprender Inglés</p>
+                            <p>Aprender ${this.usuario.aprendere}</p>
                         </a>
                     </li>
                     <li>
                         <a href=".#">
                             <i class="material-icons">school</i>
-                            <p>Enseñar Español</p>
+                            <p>Enseñar ${this.usuario.ensenare}</p>
                         </a>
                     </li>
                     <li>
@@ -237,7 +238,7 @@ var view = {
                         <ul class="nav navbar-nav navbar-right">
 
                             <li>
-                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown" style='background-image: url("public/gallery/${this.usuario.foto}")'>
                                     <i class="material-icons">person</i>
                                     <p class="hidden-lg hidden-md">Perfil</p>
                                 </a>
@@ -291,16 +292,14 @@ var view = {
 
       this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
         div.innerHTML += `
-        <div class="col-lg-8 col-md-8">
-        <div class="card card-stats">
-        <div class="card-gallery" data-background-color="">
-            <img class="foto" src="public/gallery/logoWord.png" height="30">
-            <i class="material-icons">image</i>
+<div class="col-lg-8 col-md-8">
+    <div class="card card-stats">
+        <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.foto}")'>
+            <i class="material-icons"></i>
         </div>
 
         <div class="card-content">
-            <div class="card-header" data-background-color="">
-                <img src="public/gallery/${user.foto}"/>
+             <div class="card-header" data-background-color="" style='background-image: url("public/gallery/${user.foto}")'>
                 <i class="material-icons">person</i>
             </div>
             <p class="category">
@@ -332,7 +331,7 @@ var view = {
             </div>
             <div class="card-comentarios">
                 <div class="comentarioHecho">
-                    <div class="card-header" data-background-color="">
+                    <div class="card-header" style='background-image: url("public/gallery/${user.foto}")' data-background-color="">
                         <i class="material-icons">person</i>
                     </div>
                     <h4 class="title">Otro usuario</h4>

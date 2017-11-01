@@ -2009,6 +2009,7 @@ fieldset[disabled] .navbar .btn-link:focus {
     padding: 15px;
     background-color: #999999;
     vertical-align: middle;
+    background-size: cover;
 }
 
 .card .card-gallery {
@@ -2018,6 +2019,7 @@ fieldset[disabled] .navbar .btn-link:focus {
     border-radius: 10px;
     padding: 50px;
     background-color: greenyellow;
+    background-size: cover;
 }
 
 .card .card-comentarios .comentarioHecho {
@@ -2029,12 +2031,12 @@ fieldset[disabled] .navbar .btn-link:focus {
     padding: 0px;
     box-shadow: none;
     background-color: dodgerblue;
+    background-size: cover;
 }
 
 .card .comentarioHecho .category,
 .card .comentarioHecho .title {
     font-size: 16px;
-    
     margin-left: 67px;
     padding: 5px;
     width: 90%;
@@ -2144,6 +2146,12 @@ fieldset[disabled] .navbar .btn-link:focus {
     top: -1px;
     font-size: 20px;
     margin-left: 10px;
+}
+.card-content .card-header .material-icons {
+    opacity: 0;
+}
+.comentarioHecho .card-header .material-icons {
+    opacity: 0;
 }
 
 .card .card-footer h6 {
