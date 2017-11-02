@@ -173,6 +173,73 @@ activarDesplegable: function activarDesplegable(){
   },
 
 
+  preguntaIndividual: function preguntaIndividual(){
+
+div = document.createElement('div');
+this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
+div.innerHTML += `
+<div class="col-lg-8 col-md-8">
+    <div class="card card-stats">
+        <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.post[3] ? user.post[3] : "predeterminado.jpg"}")'>
+            <i class="material-icons"></i>
+        </div>
+
+        <div class="card-content">
+             <div class="card-header" data-background-color="" style='background-image: url("public/gallery/${user.foto ? user.foto : "predeterminado.jpg"}")'>
+                <i class="material-icons">person</i>
+            </div>
+            <p class="category">
+                <Strong>${user.nombre}</Strong>
+            </p>
+            <h3 class="title"><a href="#">${user.post[0] ? user.post[0] : ""}</a></h3>
+            <p class="category">${user.post[1] ? user.post[1] : ""}</p>
+        </div>
+
+        <div class="card-footer">
+            <div class="izquierda">
+                <div class="state">
+                    <a href="#">
+                        <i class="material-icons">favorite_border</i> Me gusta</a>
+                    </div>
+                    <div class="state">
+                        <a href="#"><i class="material-icons">chat_bubble_outline</i> Comentarios</a>
+                    </div>
+                </div>
+
+                <div class="derecha">
+                    <div class="stats">
+                        <i class="material-icons">location_on</i> Universidad ${user.universidad}
+                    </div>
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> Hace ${user.post[2] ? user.post[2] : ""}
+                    </div>
+                </div>
+            </div>
+            <div class="card-comentarios">
+                <div class="comentarioHecho">
+                    <div class="card-header" style='background-image: url("public/gallery/${user.foto}")' data-background-color="">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <h4 class="title">Otro usuario</h4>
+                    <p class="category">Was fúr ein Gericht its das und wo kann ich ihn finden?</p>
+
+                </div>
+                <div class="hacerComentario">
+                    <div class="card-header" data-background-color="">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <form>
+                        <input type="text" name="comentar" placeholder="Escribe un comentario...">
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        `;
+        });
+        return div;
+    },
+
  renderHome: function renderHome(){
     div = document.createElement('div');
     if(!this.usuario){
@@ -208,7 +275,7 @@ activarDesplegable: function activarDesplegable(){
                         </a>
                     </li>
                     <li>
-                        <form>
+                        <form class="crearPost">
                           <textarea class="introducirTexto" name="texto" placeholder="¿Qué quieres preguntar?"></textarea>
                           <input class="introducirImagen" type="file" name="foto" />
                           <button type="submit"><i class="material-icons text-gray">add_box</i>
@@ -304,10 +371,9 @@ activarDesplegable: function activarDesplegable(){
 
     div.querySelector('.contenedorPreguntas').appendChild(this.preguntaIndividual());
 
-    console.log(div.querySelector('form'))
-      div.querySelector('form').addEventListener('submit', (e) => {
+    console.log(div.querySelector('.crearPost'))
+      div.querySelector('.crearPost').addEventListener('submit', (e) => {
         e.preventDefault();
-        console.log("Sube foto");
         this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
       });
 
@@ -315,74 +381,6 @@ activarDesplegable: function activarDesplegable(){
 
     return div;
   },
-
-
-preguntaIndividual: function preguntaIndividual(){
-
-div = document.createElement('div');
-this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
-div.innerHTML += `
-<div class="col-lg-8 col-md-8">
-    <div class="card card-stats">
-        <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.post[3] ? user.post[3] : "predeterminado.jpg"}")'>
-            <i class="material-icons"></i>
-        </div>
-
-        <div class="card-content">
-             <div class="card-header" data-background-color="" style='background-image: url("public/gallery/${user.foto ? user.foto : "predeterminado.jpg"}")'>
-                <i class="material-icons">person</i>
-            </div>
-            <p class="category">
-                <Strong>${user.nombre}</Strong>
-            </p>
-            <h3 class="title"><a href="#">${user.post[0] ? user.post[0] : ""}</a></h3>
-            <p class="category">${user.post[1] ? user.post[1] : ""}</p>
-        </div>
-
-        <div class="card-footer">
-            <div class="izquierda">
-                <div class="state">
-                    <a href="#">
-                        <i class="material-icons">favorite_border</i> Me gusta</a>
-                    </div>
-                    <div class="state">
-                        <a href="#"><i class="material-icons">chat_bubble_outline</i> Comentarios</a>
-                    </div>
-                </div>
-
-                <div class="derecha">
-                    <div class="stats">
-                        <i class="material-icons">location_on</i> Universidad ${user.universidad}
-                    </div>
-                    <div class="stats">
-                        <i class="material-icons">date_range</i> Hace ${user.post[2] ? user.post[2] : ""}
-                    </div>
-                </div>
-            </div>
-            <div class="card-comentarios">
-                <div class="comentarioHecho">
-                    <div class="card-header" style='background-image: url("public/gallery/${user.foto}")' data-background-color="">
-                        <i class="material-icons">person</i>
-                    </div>
-                    <h4 class="title">Otro usuario</h4>
-                    <p class="category">Was fúr ein Gericht its das und wo kann ich ihn finden?</p>
-
-                </div>
-                <div class="hacerComentario">
-                    <div class="card-header" data-background-color="">
-                        <i class="material-icons">person</i>
-                    </div>
-                    <form>
-                        <input type="text" name="comentar" placeholder="Escribe un comentario...">
-                    </form>
-                </div>
-            </div>
-        </div>
-        </div>
-        `;
-        });
-        return div;
-    },
 
 
     render: function render() {

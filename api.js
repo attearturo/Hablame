@@ -37,7 +37,6 @@ api.route('/usuarios')
 })
 
 .post((req,res)=>{
-  
   db.collection('usuarios')
   .find({codigo:req.body.codigo})
   .toArray((err,usuarios) =>{
@@ -60,6 +59,8 @@ api.route('/usuarios')
     }
   });
 });
+
+
 
 api.route('/idioma')
 .post((req, res) => { 
@@ -118,6 +119,46 @@ api.route('gallery/:codigo')
       res.json({ mensaje: 'error', error: err });
     }
   });
+});
+
+
+api.route('/posts')
+.get((req,res)=>{
+  db.collection('posts')
+  .find({})
+  .toArray((err,posts)=>{
+    if(!err){
+      res.json({ 
+        mensaje: 'ok', 
+        posts: posts,
+      });
+    }else{
+      res.json({ mensaje: 'error' });
+    }
+  });
+})
+
+db.collection('posts')
+.find({codigo:req.body.codigo})
+.toArray((err,posts) =>{
+  if(!err && usuarios.length == 0){
+    var nuevoPost={
+      post: req.body.post,
+      texto: req.body.texto,
+      foto: req.body.foto,
+      ubicacion: req.body.ubicacion,
+      like: req.body.like,
+    };
+    db.collection('posts').insert(nuevoPost,(errInsert) => {
+      if(!errInsert){
+        res.json({ mensaje: 'ok' });
+      } else {
+        res.json({mensaje:'No se pudo crear post.'});
+      }
+    });
+  } else {
+    res.json({ mensaje: 'No se pudo crear post.' });
+  }
 });
 
 
