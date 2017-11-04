@@ -99,5 +99,15 @@ view.render();
     }
   });
 }
+  fetch(`${location.origin}/api/posts`)
+
+  .then((res) => res.json())
+  .then((res) => {
+    if(res.mensaje == 'ok'){
+      view.posts = res.posts;
+      view.render();
+    }
+  });
+}
 
 controller(view);
