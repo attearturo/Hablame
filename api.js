@@ -46,10 +46,17 @@ api.route('/usuarios')
         codigo: req.body.codigo,
         contrasena: req.body.contrasena,
         foto: req.body.foto,
+        aprendere : "Pendiente",
+        ensenare : "Pendiente",
+        post : ["Primera pregunta", "Descripción", "Tiempo", "predeterminado.jpg"],
       };
+      
       db.collection('usuarios').insert(nuevoUsuario,(errInsert) => {
         if(!errInsert){
-          res.json({ mensaje: 'ok' });
+          res.json({ 
+            mensaje: 'ok',
+            usuario: nuevoUsuario
+          });
         } else {
           res.json({mensaje:'Lo sentimos, este código ya se utiliza.'});
         }
@@ -61,11 +68,13 @@ api.route('/usuarios')
 });
 
 
-
 api.route('/idioma')
 .post((req, res) => { 
   db.collection('usuarios')
-  .update({codigo:req.body.codigo}, {$set: {aprendere: req.body.aprendere}}, {$set: {ensenare: req.body.ensenare}})
+  .update({codigo:req.body.codigo}, {$set: {aprendere: req.body.aprendere, ensenare: req.body.ensenare}});
+  
+  db.collection('usuarios')
+  .find({ codigo:req.body.codigo })
   .toArray((err, usuarios) => {
     if(!err && usuarios.length > 0){
       res.json({
@@ -73,10 +82,46 @@ api.route('/idioma')
         usuario: usuarios[0]
       });
     } else {
-      res.json({ mensaje: 'ok' });
+      res.json({ mensaje: 'Error en idiomas' });
     }
   });
 });
+
+
+api.route('/hacerPost')
+.post((req,res)=>{
+  db.collection('usuarios')
+  .find({ nombre:req.body.nombre, foto:req.body.foto, post:req.body.post})
+  .toArray((err,usuarios) =>{
+    if(!err && usuarios.length == 0){
+      var nuevoUsuario={
+        nombre: req.body.nombre,
+        universidad: req.body.universidad,
+        codigo: "Pendiente",
+        contrasena: req.body.contrasena,
+        foto: req.body.foto,
+        aprendere : "Pendiente",
+        ensenare : "Pendiente",
+        post : req.body.foto,
+        post : ["Primera pregunta", "Descripción", "Tiempo", "predeterminado.jpg"],
+      };
+      
+      db.collection('usuarios').insert(nuevoUsuario,(errInsert) => {
+        if(!errInsert){
+          res.json({ 
+            mensaje: 'ok',
+            usuario: nuevoUsuario
+          });
+        } else {
+          res.json({mensaje:'Lo sentimos, este código ya se utiliza.'});
+        }
+      });
+    } else {
+      res.json({ mensaje: 'No se pudo insertar usuario.' });
+    }
+  });
+});
+
 
 api.route('/login')
 .post((req, res) => { 

@@ -39,8 +39,8 @@ activarDesplegable: function activarDesplegable(){
 
        form.addEventListener('submit', (e) =>{
         e.preventDefault();
-        console.log('Presiona boton');
-        this.onLogin(e.target.user.value, e.target.password.value);
+        console.log('Presiona login');
+            this.onLogin(e.target.user.value, e.target.password.value);
     });
        return form;
    },
@@ -82,15 +82,15 @@ activarDesplegable: function activarDesplegable(){
           var universidad = div.querySelector('.desactivado').innerHTML;
           console.log(universidad);
           this.onRegistro(universidad, e.target.codigo.value, e.target.contrasena.value);
-        });
+      });
         return div;
     },
 
     renderIdiom: function renderIdiom(){
-          div = document.createElement('div');
-    if(!this.usuario){
-         location.pathname = '/register'
-    } else {
+      div = document.createElement('div');
+      if(!this.usuario){
+       location.pathname = '/register'
+   } else {
         div.innerHTML = `
         <div class='bodyRegister'>
         <div class='register'>
@@ -178,14 +178,62 @@ activarDesplegable: function activarDesplegable(){
     return div;
   },
 
+hacerPost: function hacerPost(user){
+
+    var posted =  document.createElement('div');
+    posted.setAttribute('class', 'post');
+        posted.innerHTML += `
+<div class="content">
+        <div class="card card-stats">
+            <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.post[3] ? user.post[3] : "predeterminado.jpg"}")'>
+                <i class="material-icons"></i>
+            </div>
+
+            <div class="card-content">
+               <div class="card-header" data-background-color="" style='background-image: url("public/gallery/${user.foto ? user.foto : "predeterminado.jpg"}")'>
+                <i class="material-icons">person</i>
+            </div>
+            <p class="category">
+                <Strong>${user.nombre}</Strong>
+            </p>
+            <h3 class="title"><a href="#">${user.post[0] ? user.post[0] : ""}</a></h3>
+            <p class="category">${user.post[1] ? user.post[1] : ""}</p>
+        </div>
+
+        <div class="card-footer">
+            <div class="izquierda">
+                <div class="state">
+                    <a href="#">
+                        <i class="material-icons">favorite_border</i> Me gusta</a>
+                    </div>
+                    <div class="state">
+                        <a href="#"><i class="material-icons">chat_bubble_outline</i> Comentarios</a>
+                    </div>
+                </div>
+
+                <div class="derecha">
+                    <div class="stats">
+                        <i class="material-icons">location_on</i> Universidad ${user.universidad}
+                    </div>
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> Hace ${user.post[2] ? user.post[2] : ""} minutos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        `;
+        return posted;
+    },
+
 
   preguntaIndividual: function preguntaIndividual(){
 
-var post =  document.createElement('div');
-post.setAttribute('class', 'post');
+    var post =  document.createElement('div');
+    post.setAttribute('class', 'post');
 
-this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
-post.innerHTML += `
+    this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
+        post.innerHTML += `
 <div class="content">
     <div class="card card-stats">
         <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.post[3] ? user.post[3] : "predeterminado.jpg"}")'>
@@ -340,19 +388,19 @@ post.innerHTML += `
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">Mike John responded to your email</a>
+                                        <a href="#">Camilo ha respondido a tu publicación</a>
                                     </li>
                                     <li>
-                                        <a href="#">You have 5 new tasks</a>
+                                        <a href="#">Tienes 5 eventos pronto</a>
                                     </li>
                                     <li>
-                                        <a href="#">You're now friend with Andrew</a>
+                                        <a href="#">Ahora eres amigo de Nathalia</a>
                                     </li>
                                     <li>
-                                        <a href="#">Another Notification</a>
+                                        <a href="#">Sofia le ha dado Me gusta a tu publicación</a>
                                     </li>
                                     <li>
-                                        <a href="#">Another One</a>
+                                        <a href="#">Sofia le ha dado Me gusta a tu foto</a>
                                     </li>
                                 </ul>
                             </li>
@@ -379,12 +427,13 @@ post.innerHTML += `
 
     div.querySelector('.contenedorPreguntas').appendChild(this.preguntaIndividual());
 
-    console.log(div.querySelector('.crearPost'))
-      div.querySelector('.crearPost').addEventListener('submit', (e) => {
+      div.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
-        this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
+        post : ["Pregunta", e.target.texto.value, "1", e.target.foto.files[0]];
+        this.hacerPost(this.usuario.nombre, this.usuario.foto, post);
       });
 
+    //div.querySelector('.contenedorPreguntas').appendChild(this.hacerPost());
   }
 
     return div;

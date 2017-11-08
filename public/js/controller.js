@@ -42,19 +42,45 @@ view.onRegistro = (universidad, codigo, contrasena) => {
   .then(res => res.json())
   .then((res) => {
     if(res.mensaje == 'ok'){
+      console.log(res);
       view.usuario = res.usuario;
-      // window.location('/idiom')
       history.pushState('registro', 'login', '/idiom');
       view.render();
+    } else {
+      alert('Este código ya está siendo utilizado.')
     }
   });
 };
 
-view.onIdiom = (codigo, enseña, aprende) => {
+view.hacerPost = (nombre, foto, post) => {
+  console.log('Se introducen datos en el formulario');
+  var params = new URLSearchParams();
+  params.set('nombre', nombre);
+  params.set('foto', foto);
+  params.set('post', post);
+
+  fetch(`${location.origin}/api/hacerPost`,{
+    method: 'POST',
+    body: params
+  })
+  .then(res => res.json())
+  .then((res) => {
+    if(res.mensaje == 'ok'){
+      console.log(res);
+      view.usuario = res.usuario;
+      history.pushState('registro', 'login', '/home');
+      view.render();
+    } else {
+      alert('Este código ya está siendo utilizado.')
+    }
+  });
+};
+
+view.onIdiom = (codigo, ensena, aprende) => {
   console.log('Se introducen los idiomas');
   var params = new URLSearchParams();
   params.set('codigo', codigo);
-  params.set('ensenare', enseña);
+  params.set('ensenare', ensena);
   params.set('aprendere', aprende);
 
   fetch(`${location.origin}/api/idioma`,{
@@ -64,9 +90,10 @@ view.onIdiom = (codigo, enseña, aprende) => {
   .then(res => res.json())
   .then((res) => {
     if(res.mensaje == 'ok'){
-      view.usuario = res.usuario;
-      history.pushState('registro', 'login', '/home');
-      view.render();
+      console.log(res);
+     view.usuario = res.usuario;
+     history.pushState('registro', 'login', '/home');
+     view.render();
     }
   });
 };
