@@ -65,7 +65,7 @@ api.route('/usuarios')
 api.route('/idioma')
 .post((req, res) => { 
   db.collection('usuarios')
-  .update({codigo:req.body.codigo}, {$set: {aprendere: req.body.codigo}})
+  .update({codigo:req.body.codigo}, {$set: {aprendere: req.body.aprendere}}, {$set: {ensenare: req.body.ensenare}})
   .toArray((err, usuarios) => {
     if(!err && usuarios.length > 0){
       res.json({
@@ -73,7 +73,7 @@ api.route('/idioma')
         usuario: usuarios[0]
       });
     } else {
-      res.json({ mensaje: 'Idioma agregago' });
+      res.json({ mensaje: 'ok' });
     }
   });
 });
@@ -110,7 +110,7 @@ api.route('gallery/:codigo')
       db.collection('usuarios')
       .updateOne({ codigo: req.params.codigo }, { 
         $set: {
-          foto: foto.name,
+          foto: req.body.foto,
           texto: req.body.texto
         }
       });
@@ -138,28 +138,29 @@ api.route('/posts')
   });
 })
 
-db.collection('posts')
-.find({codigo:req.body.codigo})
-.toArray((err,posts) =>{
-  if(!err && usuarios.length == 0){
-    var nuevoPost={
-      post: req.body.post,
-      texto: req.body.texto,
-      foto: req.body.foto,
-      ubicacion: req.body.ubicacion,
-      like: req.body.like,
-    };
-    db.collection('posts').insert(nuevoPost,(errInsert) => {
-      if(!errInsert){
-        res.json({ mensaje: 'ok' });
-      } else {
-        res.json({mensaje:'No se pudo crear post.'});
-      }
-    });
-  } else {
-    res.json({ mensaje: 'No se pudo crear post.' });
-  }
+.post((req,res)=>{
+  db.collection('posts')
+  .find({codigo:req.body.codigo})
+  .toArray((err,posts) =>{
+    if(!err && usuarios.length == 0){
+      var nuevoPost={
+        post: req.body.post,
+        texto: req.body.texto,
+        foto: req.body.foto,
+        ubicacion: req.body.ubicacion,
+        like: req.body.like,
+      };
+      db.collection('posts').insert(nuevoPost,(errInsert) => {
+        if(!errInsert){
+          res.json({ mensaje: 'ok' });
+        } else {
+          res.json({mensaje:'No se pudo crear post.'});
+        }
+      });
+    } else {
+      res.json({ mensaje: 'No se pudo crear post.' });
+    }
+  });
 });
-
 
 module.exports = api;

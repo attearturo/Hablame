@@ -1272,7 +1272,8 @@ select.form-control[multiple],
     font-weight: 400;
     font-size: 12px;
     text-transform: uppercase;
-    border-radius: 3px;
+    border-radius: 100px;
+    background-size: cover;
 }
 
 .navbar .navbar-nav > li > a:hover,
@@ -1284,6 +1285,9 @@ select.form-control[multiple],
 .navbar .navbar-nav > li > a .material-icons,
 .navbar .navbar-nav > li > a .fa {
     font-size: 20px;
+}
+.navbar .navbar-nav > li > a .me .material-icons{
+    opacity: 0;
 }
 
 .navbar .navbar-nav > li > a.btn:not(.btn-just-icon) .fa {
@@ -1880,15 +1884,19 @@ fieldset[disabled] .navbar .btn-link:focus {
     top: 1px;
     margin-right: 12px;
     opacity: .5;
+
+    border-radius: 100px;
     background-size: cover;
 }
 .dropdown-menu.dropdown-with-icons li > a .material-icons .me {
     opacity: 0;
+
+    border-radius: 100px;
+    background-size: cover;
 }
 
 .dropdown-menu li {
     position: relative;
-    background-size: cover;
 }
 
 .dropdown-menu li a:hover,
@@ -1900,6 +1908,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 
 .dropdown-menu .divider {
     margin: 5px 0;
+}
+
+.dropdown-toggle .me {
+    border-radius: 100px;
+    background-size: cover;
 }
 
 .navbar .dropdown-menu li a:hover,

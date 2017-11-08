@@ -42,7 +42,7 @@ view.onRegistro = (universidad, codigo, contrasena) => {
   .then(res => res.json())
   .then((res) => {
     if(res.mensaje == 'ok'){
-      view.usuarios = res.usuarios;
+      view.usuario = res.usuario;
       // window.location('/idiom')
       history.pushState('registro', 'login', '/idiom');
       view.render();
@@ -50,9 +50,10 @@ view.onRegistro = (universidad, codigo, contrasena) => {
   });
 };
 
-view.onIdiom = (enseña, aprende) => {
+view.onIdiom = (codigo, enseña, aprende) => {
   console.log('Se introducen los idiomas');
   var params = new URLSearchParams();
+  params.set('codigo', codigo);
   params.set('ensenare', enseña);
   params.set('aprendere', aprende);
 
@@ -63,7 +64,7 @@ view.onIdiom = (enseña, aprende) => {
   .then(res => res.json())
   .then((res) => {
     if(res.mensaje == 'ok'){
-      view.usuarios = res.usuarios;
+      view.usuario = res.usuario;
       history.pushState('registro', 'login', '/home');
       view.render();
     }
@@ -98,9 +99,8 @@ view.render();
       view.render();
     }
   });
-}
-  fetch(`${location.origin}/api/posts`)
 
+  fetch(`${location.origin}/api/posts`)
   .then((res) => res.json())
   .then((res) => {
     if(res.mensaje == 'ok'){

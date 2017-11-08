@@ -8,6 +8,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 //rutas al api
 var api = require('./api.js');
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

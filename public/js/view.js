@@ -1,6 +1,7 @@
 var view = {
   usuario: null,
   usuarios:null,
+  nuevoUsuario: null,
 
 
 activarDesplegable: function activarDesplegable(){
@@ -86,7 +87,10 @@ activarDesplegable: function activarDesplegable(){
     },
 
     renderIdiom: function renderIdiom(){
-        div = document.createElement('div');
+          div = document.createElement('div');
+    if(!this.usuario){
+         location.pathname = '/register'
+    } else {
         div.innerHTML = `
         <div class='bodyRegister'>
         <div class='register'>
@@ -138,9 +142,11 @@ activarDesplegable: function activarDesplegable(){
           e.preventDefault();
           var ensena = div.querySelector('.ensena').innerHTML;
           var aprende = div.querySelector('.aprende').innerHTML;
-          this.onIdiom(ensena, aprende);
+          this.onIdiom(this.usuario.codigo, ensena, aprende);
         });
+        }
         return div;
+    
     },
 
   renderProfile: function renderProfile(){
@@ -175,10 +181,12 @@ activarDesplegable: function activarDesplegable(){
 
   preguntaIndividual: function preguntaIndividual(){
 
-div = document.createElement('div');
+var post =  document.createElement('div');
+post.setAttribute('class', 'post');
+
 this.usuarios.sort((a, b) => a.codigo < b.codigo).forEach(user => {
-div.innerHTML += `
-<div class="col-lg-8 col-md-8">
+post.innerHTML += `
+<div class="content">
     <div class="card card-stats">
         <div class="card-gallery" data-background-color="" style='background-image: url("public/gallery/${user.post[3] ? user.post[3] : "predeterminado.jpg"}")'>
             <i class="material-icons"></i>
@@ -211,7 +219,7 @@ div.innerHTML += `
                         <i class="material-icons">location_on</i> Universidad ${user.universidad}
                     </div>
                     <div class="stats">
-                        <i class="material-icons">date_range</i> Hace ${user.post[2] ? user.post[2] : ""}
+                        <i class="material-icons">date_range</i> Hace ${user.post[2] ? user.post[2] : ""} minutos
                     </div>
                 </div>
             </div>
@@ -237,7 +245,7 @@ div.innerHTML += `
         </div>
         `;
         });
-        return div;
+        return post;
     },
 
  renderHome: function renderHome(){
@@ -318,7 +326,7 @@ div.innerHTML += `
                         <ul class="nav navbar-nav navbar-right">
 
                             <li>
-                                <a href="pablo" class="dropdown-toggle me" data-toggle="dropdown" style='background-image: url("public/gallery/${this.usuario.foto}")'>
+                                <a href="#" class="dropdown-toggle me" data-toggle="dropdown" style='background-image: url("public/gallery/${this.usuario.foto}")'>
                                     <i class="material-icons">person</i>
                                     <p class="hidden-lg hidden-md">Perfil</p>
                                 </a>
