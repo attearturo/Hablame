@@ -1,4 +1,4 @@
-    body{
+    body {
         margin: 0 auto;
     }
 
@@ -128,7 +128,8 @@
         left: 50%;
         margin: -150px 0 0 -150px;
         width: 300px;
-        height: 300px;]
+        height: 300px;
+        ]
     }
 
     .login h1 {
@@ -517,7 +518,7 @@
     .botonAudio {
         width: 100%;
     }
-    
+
     .anuncioAudio {
         padding: 0px 0px 0px 0px;
         font-size: 14px;
@@ -525,3 +526,4 @@
         display: inline-block;
         color: darkslategrey;
     }
+.

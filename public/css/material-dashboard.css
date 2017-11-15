@@ -58,6 +58,10 @@
     overflow: auto;
     width: 100%;
     z-index: 4;
+    padding: 10px;
+}
+.sidebar_wrapper{
+    padding: 10px;
 }
 
 .sidebar .sidebar-wrapper .dropdown .dropdown-backdrop,
@@ -144,6 +148,25 @@
     text-align: center;
     color: #a9afbb;
 }
+
+.sidebar .nav .aterr,
+.off-canvas-sidebar .nav .aterr {
+background-color: #bae240;
+    border: none;
+    padding: 5px;
+    padding-top: 20px;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    text-align: left;
+    padding-left: 15px;
+    box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
+}
+
+.sidebar .nav .aterr .material-icons {
+    color: white;
+    margin-bottom: 10px;
+    }
 
 .sidebar .sidebar-background,
 .off-canvas-sidebar .sidebar-background {
@@ -263,13 +286,10 @@ sans-serif;
 .sidebar[data-color="blue"] .nav li.active a,
 .off-canvas-sidebar[data-color="blue"] .nav li.active a {
     background-color: dodgerblue;
-    box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
 }
-
-.sidebar[data-color="green"] .nav li.active a,
-.off-canvas-sidebar[data-color="green"] .nav li.active a {
-    background-color: lawngreen;
-    box-shadow: 0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2);
+.sidebar[data-color="blue"] .nav li.active.green a,
+.off-canvas-sidebar[data-color="blue"] .nav li.active a {
+    background-color: #bae240;
 }
 
 .off-canvas-sidebar .nav > li > a,
@@ -291,6 +311,23 @@ sans-serif;
 .perfect-scrollbar-off .sidebar .sidebar-wrapper,
 .perfect-scrollbar-off .main-panel {
     overflow: auto;
+}
+
+.sidebar-wrapper .active {
+    margin-top: 10px;
+}
+
+.sidebar-wrapper .usuarioEstado {
+    color: dodgerblue;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.sidebar-wrapper .crearPost{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .main-panel {
@@ -487,6 +524,15 @@ input[type="submit"]::-moz-focus-inner,
 select::-moz-focus-inner,
 input[type="file"] > input[type="button"]::-moz-focus-inner {
     outline: 0 !important;
+}
+
+.submit{
+    border: none;
+    padding: 5px;
+    padding-top: 15px;
+    text-align: left;
+    padding-left: 15px;
+    width: 100%;
 }
 
 legend {
@@ -1276,6 +1322,17 @@ select.form-control[multiple],
     background-size: cover;
 }
 
+.navbar .navbar-nav > li > a > aterr {
+    background-color: #bae240;
+    border: none;
+    padding: 5px;
+    padding-top: 15px;
+    color: white;
+    width: 100%;
+    text-align: left;
+    padding-left: 15px;
+}
+
 .navbar .navbar-nav > li > a:hover,
 .navbar .navbar-nav > li > a:focus {
     color: inherit;
@@ -1825,6 +1882,8 @@ fieldset[disabled] .navbar .btn-link:focus {
     width: 100%;
 }
 
+
+
 .nav-align-center {
     text-align: center;
 }
@@ -1913,6 +1972,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 .dropdown-toggle .me {
     border-radius: 100px;
     background-size: cover;
+    opacity: 0;
 }
 
 .navbar .dropdown-menu li a:hover,
@@ -2788,7 +2848,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 
 .introducirTexto{
-    border: none;
+    border: 1px solid lightgray;
     border-radius: 5px;
     width: 100%;
     height: 100px;
@@ -2797,8 +2857,26 @@ fieldset[disabled] .navbar .btn-link:focus {
     font-family: 'Poppins', sans-serif;
     background-color: white;
     padding: 10px;
-    margin: 10px 5px 10px 5px;
+    padding: 10px;
+    padding: 10px;
     resize: none;
+}
+
+.register .introducirTexto{
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    color: gray;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    padding: 10px;
+    padding: 10px;
+    padding: 10px;
+    resize: none;
+    
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0px 20px rgba(0, 0, 0, 0.1);
 }
 .introducirImagen{
     border: 1 solid lightgrey;
@@ -2809,4 +2887,15 @@ fieldset[disabled] .navbar .btn-link:focus {
     background-color: transparent;
     padding: 5px;
     margin: 10px 5px 10px 5px;
+}
+
+.register .introducirImagen{
+    border: 1 solid lightgrey;
+    border-radius: 5px;
+    color: gray;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent;
+    padding: 15px;
+    margin: 0 auto;
 }

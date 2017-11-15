@@ -67,6 +67,7 @@ activarDesplegable: function activarDesplegable(){
                 </div>
             </div>
             <form method="post">
+                <input type="text" name="nombre" placeholder="nombre" required="required" />
                 <input type="text" name="codigo" placeholder="código" required="required" />
                 <input type="password" name="contrasena" placeholder="contraseña" required="required" />
                 <button type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Continuar</button>
@@ -81,7 +82,7 @@ activarDesplegable: function activarDesplegable(){
           e.preventDefault();
           var universidad = div.querySelector('.desactivado').innerHTML;
           console.log(universidad);
-          this.onRegistro(universidad, e.target.codigo.value, e.target.contrasena.value);
+          this.onRegistro(universidad, e.target.nombre.value, e.target.codigo.value, e.target.contrasena.value);
       });
         return div;
     },
@@ -149,34 +150,56 @@ activarDesplegable: function activarDesplegable(){
     
     },
 
-  renderProfile: function renderProfile(){
-    var div = document.createElement('div');
+    
+    
+    renderPublicar: function renderPublicar(){
+      div = document.createElement('div');
+      if(!this.usuario){
+       location.pathname = '/register'
+   } else {
+        div.innerHTML = `
+        <div class='bodyRegister'>
+        <div class='register'>
+        <p class="escogerIdioma">Selecciona un tipo de pregunta y enviala a la comunidad. <e class="azul">Alguien te ayudará</e>
+        </p>
 
-    div.innerHTML = `
-      <h1>${this.usuario.codigo}</h1>
-    `;
-
-    if(this.usuario.foto){
-      div.innerHTML += `
-        <img src="fotos/${this.usuario.foto}" />
-        <p>${this.usuario.texto}</p>
-      `;
-    } else {
-      div.innerHTML += `
-        <form>
-          <input type="file" name="foto" />
-          <textarea name="texto"></textarea>
-          <button type="submit">subir</submit>
+        <div class="selectorU">
+            <div class="drop-menu">
+                <div class="select">
+                    <span class="pregunta">Tipo de pregunta</span>
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+                <input type="hidden" name="ensenare">
+                <ul class="dropeddown">
+                    <li id="significa">¿Qué significa?</li>
+                    <li id="llegar">¿Cómo llegar?</li>
+                    <li id="pronuncia">¿Cómo se pronuncia?</li>
+                    <li id="traduce">¿Cómo se traduce?</li>
+                    <li id="traduce">¿Qué me aconsejan?</li>
+                </ul>
+            </div>
+        </div>
+        <form method="post">
+            <textarea class="introducirTexto" name="preguntaEscrita" placeholder="¿Qué quieres preguntar?"></textarea>
+            <input class="introducirImagen" type="file" name="foto" placeholder="Buscar foto"/>
+            <button type="submit" class="btnRegister btnRegister-primary btnRegister-block btnRegister-large">Preguntar</button>
         </form>
-      `;
+        <p class="subTexto">Puedes editar la pregunta después</p>
+    </div>
+    </div>
+        `;
 
-      div.querySelector('form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        this.onSubirFoto(this.usuario.codigo, e.target.foto.files[0], e.target.texto.value);
-      });
-    }
-    return div;
-  },
+        div.querySelector('form').addEventListener('submit', (e) => {
+          e.preventDefault();
+        var pregunta = div.querySelector('.pregunta').innerHTML;
+        var post = [pregunta, e.target.preguntaEscrita.value, "1", e.target.foto.files[0]];
+          this.onPublicar(this.usuario.codigo, post);
+        });
+       
+        }
+        return div;
+    
+    },
 
 hacerPost: function hacerPost(user){
 
@@ -309,38 +332,39 @@ hacerPost: function hacerPost(user){
         <div class="sidebar col-lg-3 col-md-3" data-color="blue" data-image="public/img/sidebar-3.jpg">
             <div class="logo">
                 <img class="simple-text" src="public/img/logo.png">
+                   
             </div>
             <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li class="active">
-                        <a href="/home">
-                            <i class="material-icons">public</i>
-                            <p>Todas las preguntas</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">import_contacts</i>
-                            <p>Aprender ${this.usuario.aprendere}</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href=".#">
-                            <i class="material-icons">school</i>
-                            <p>Enseñar ${this.usuario.ensenare}</p>
-                        </a>
-                    </li>
-                    <li>
-                        <form class="crearPost">
-                          <textarea class="introducirTexto" name="texto" placeholder="¿Qué quieres preguntar?"></textarea>
-                          <input class="introducirImagen" type="file" name="foto" />
-                          <button type="submit"><i class="material-icons text-gray">add_box</i>
-                          CREAR PREGUNTA</button>
-                        </form>  
-                    </li>
+            <h4 class="usuarioEstado">${this.usuario.nombre}</h4>
+
+                    <ul class="nav">
+                        <li>
+                                <i class="material-icons">school</i>
+                                <p>Universidad ${this.usuario.universidad}</p>
+                        </li>
+                        <li>
+                                <i class="material-icons">import_contacts</i>
+                                <p>Aprende ${this.usuario.aprendere}</p>
+                        </li>
+                        <li>
+                                <i class="material-icons">translate</i>
+                                <p>Enseña ${this.usuario.ensenare}</p>
+                        </li>
+                        <li class="active">
+                            <a href="/home">
+                                <i class="material-icons">public</i>
+                                <p>Tablero de preguntas</p>
+                            </a>
+                        </li>
+                        <li class="active green">
+                            <a class="toPublicar">
+                                <i class="material-icons">add_box</i>
+                                <p>Preguntar</p>
+                            </a>
+                        </li>
                     <li>  
-                        <a href="/login">       
-                            <i class="material-icons text-gray">add_out</i>
+                        <a class="cerrarSesion" style="margin-top:10px" href="/login">       
+                            <i class="material-icons text-gray">clear</i>
                             <p>Salir</p>
                         </a>
                     </li>
@@ -427,13 +451,27 @@ hacerPost: function hacerPost(user){
 
     div.querySelector('.contenedorPreguntas').appendChild(this.preguntaIndividual());
 
+        //Cerra sesión
+        var btnClose = div.querySelector('.cerrarSesion');
+        btnClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.closeAccount();
+        });
+        
+        //Publicar
+        var btnPublicar = div.querySelector('.toPublicar');
+        btnPublicar.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.goPublicar();
+        });
+
+        
       div.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
         post : ["Pregunta", e.target.texto.value, "1", e.target.foto.files[0]];
         this.hacerPost(this.usuario.nombre, this.usuario.foto, post);
       });
 
-    //div.querySelector('.contenedorPreguntas').appendChild(this.hacerPost());
   }
 
     return div;
@@ -466,8 +504,8 @@ hacerPost: function hacerPost(user){
             main.appendChild(this.renderHome());
             break;
 
-            case '/profile':
-            main.appendChild(this.renderProfile());
+            case '/publicar':
+            main.appendChild(this.renderPublicar());
             break;
         }
         this.activarDesplegable();

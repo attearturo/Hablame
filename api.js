@@ -43,6 +43,7 @@ api.route('/usuarios')
     if(!err && usuarios.length == 0){
       var nuevoUsuario={
         universidad: req.body.universidad,
+        nombre: req.body.nombre,
         codigo: req.body.codigo,
         contrasena: req.body.contrasena,
         foto: req.body.foto,
@@ -72,6 +73,25 @@ api.route('/idioma')
 .post((req, res) => { 
   db.collection('usuarios')
   .update({codigo:req.body.codigo}, {$set: {aprendere: req.body.aprendere, ensenare: req.body.ensenare}});
+  
+  db.collection('usuarios')
+  .find({ codigo:req.body.codigo })
+  .toArray((err, usuarios) => {
+    if(!err && usuarios.length > 0){
+      res.json({
+        mensaje: 'ok',
+        usuario: usuarios[0]
+      });
+    } else {
+      res.json({ mensaje: 'Error en idiomas' });
+    }
+  });
+});
+
+api.route('/publicar')
+.post((req, res) => { 
+  db.collection('usuarios')
+  .update({codigo:req.body.codigo}, {$set: {post: req.body.post}});
   
   db.collection('usuarios')
   .find({ codigo:req.body.codigo })
